@@ -11,6 +11,7 @@
             
             <c:url var="getPerson" value="/getall" />
             <c:url var="home" value="/" />
+            <c:url var="prueba" value="/getallPrueba" />
                 
             <div class="container-fluid">
                 
@@ -30,7 +31,9 @@
                         
                         <a class="nav-link" href="${getPerson}">Personas</a>
                         
-                        <a class="nav-link" href="#">Monitoreos</a>
+                        <a class="nav-link" href="${prueba}">Prueba</a>
+                        
+                        <a class="nav-link" href="">Monitoreos</a>
                         
                         <a class="nav-link disabled">Visitas</a>
                     
