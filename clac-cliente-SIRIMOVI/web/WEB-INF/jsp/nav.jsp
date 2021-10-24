@@ -9,7 +9,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             
-            <c:url var="getPerson" value="/getall" />
+            <c:url var="getProduct" value="/getallProducto" />
             <c:url var="home" value="/" />
                 
             <div class="container-fluid">
@@ -28,7 +28,7 @@
                         
                         <a class="nav-link active" aria-current="page" href="${home}">Inicio</a>
                         
-                        <a class="nav-link" href="${getPerson}">Personas</a>
+                        <a class="nav-link" href="${getProduct}">Productos</a>
                         
                         <a class="nav-link" href="#">Monitoreos</a>
                         

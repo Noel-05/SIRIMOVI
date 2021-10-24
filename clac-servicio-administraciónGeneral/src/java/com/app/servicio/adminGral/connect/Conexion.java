@@ -11,10 +11,12 @@ public class Conexion {
         try{
             dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
             dataSource.setUrl("jdbc:mysql://localhost:3306/registro?autoReconnect=true&useSSL=false");
-            dataSource.setUsername("root");
-            dataSource.setPassword("renderos");
+            //dataSource.setUsername("root");
+            //dataSource.setPassword("50349015");
             // Por si da error la Url se puede usar también está
-            // dataSource.setUrl("jdbc:mysql://localhost:3306/spring_mvc?autoReconnect=true&useSSL=false&useTimezone=true&serverTimezone=UTC");
+            //dataSource.setUrl("jdbc:mysql://localhost:3306/spring_mvc?autoReconnect=true&useSSL=false&useTimezone=true&serverTimezone=UTC");
+            dataSource.setUsername("root");
+            dataSource.setPassword("50349015");
             System.out.println("Conexión Exitosa a la Base de Datos");
             
             return dataSource;
