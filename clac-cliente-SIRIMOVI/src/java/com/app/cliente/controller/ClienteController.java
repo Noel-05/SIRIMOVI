@@ -3,6 +3,8 @@ package com.app.cliente.controller;
 
 import com.app.cliente.domain.Persona;
 import com.app.cliente.domain.PersonaList;
+import com.app.cliente.domain.PruebaPersona;
+import com.app.cliente.domain.PruebaPersonaList;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.HttpEntity;
@@ -212,5 +214,109 @@ public class ClienteController {
 
         // Esto es para enviar al JSP de WEB-INF/jsp/consultarPersonas.jsp
         return "redirect:/getall";
+    }
+    
+    
+    
+    
+    
+    
+    
+    // LISTAR
+    // PRUEBA DE PERSONAS CON FK
+    @RequestMapping(value = "/getallPrueba", method = RequestMethod.GET)
+    public String getAllPrueba(Model model){
+        System.out.println("--> Recuperar Todas las Personas de mi BD (PRUEBA).");
+        
+        //Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+        
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<PruebaPersona> entity = new HttpEntity<PruebaPersona>(headers);
+        
+        //Enviamos el request via GET
+        try{
+            ResponseEntity<PruebaPersonaList> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/pruebaPersonas", 
+                    HttpMethod.GET, entity, PruebaPersonaList.class);
+            // Agregamos al Model
+            model.addAttribute("pruebaPersonasGetAll", result.getBody().getData());
+        
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        // Esto es para enviar al JSP de WEB-INF/jsp/consultarPersonas.jsp
+        return "consultarPruebaPersonas";
+    }
+
+    
+    // CREAR
+    // Mostrar el JSP para Agregar Persona
+    @RequestMapping(value = "/addPrueba", method = RequestMethod.GET)
+    public String getAddPagePrueba(Model model) {
+        System.out.println("--> Recibiendo el Request para mostrarlo en la página de agregar (PRUEBA).");
+        
+        //Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+        
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<Persona> entity = new HttpEntity<Persona>(headers);
+        
+        //Enviamos el request via GET
+        try{
+            ResponseEntity<PersonaList> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/personas", 
+                    HttpMethod.GET, entity, PersonaList.class);
+            // Agregamos al Model
+            model.addAttribute("pruebaPersona", result.getBody().getData());
+            model.addAttribute("pruebaPersonaAttribute", new PruebaPersona());
+        
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        // Esto es para enviar al JSP de WEB-INF/jsp/consultarPersonas.jsp
+        return "agregarPruebaPersona";
+        
+        
+        
+        // Creamos una persona y la agregamos al modelo
+        //model.addAttribute("pruebaPersonaAttribute", new PruebaPersona());
+
+        // Esto es para enviar al JSP de WEB-INF/jsp/agregarPersona.jsp
+        //return "agregarPruebaPersona";
+    }
+    
+    // CREAR
+    // Envíamos el registro y una solicitud de actualización por el metodo GET basados en la información que se envía en submit
+    @RequestMapping(value = "/addPrueba", method = RequestMethod.POST)
+    public String addPersonPrueba(@ModelAttribute("pruebaPersonaAttribute") PruebaPersona pruebaPersona, Model model) {
+        System.out.println("--> Agregar una nueva persona (PRUEBA).");
+
+        //Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<PruebaPersona> entity = new HttpEntity<PruebaPersona>(pruebaPersona, headers);
+
+        // Enviamos el Request via POST
+        try {
+            ResponseEntity<PruebaPersona> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/pruebaPersonasAdd", 
+                    HttpMethod.POST, entity, PruebaPersona.class);
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        // Esto es para enviar al JSP de WEB-INF/jsp/consultarPersonas.jsp
+        return "redirect:/getallPrueba";
     }
 }
