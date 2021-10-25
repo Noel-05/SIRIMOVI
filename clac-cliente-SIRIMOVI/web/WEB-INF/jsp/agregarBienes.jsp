@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Agregar Persona</title>
+        <title>Agregar Bienes</title>
     </head>
     
     <%@include file="nav.jsp" %>
@@ -13,31 +13,31 @@
     <body>
         </br>
         
-        <h1 align="center">Crear Nueva Persona</h1>
+        <h1 align="center">Crear Nuevo Bienes</h1>
         </br>
         
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
         </br>
 
-        <c:url var="saveUrl" value="/add" />
-        <c:url var="getPerson" value="/getall" />
+        <c:url var="saveUrl" value="/bienesAdd" />
+        <c:url var="getBienes" value="/getall" />
         
         <div class="container mt-4" align="center">
-            <form:form modelAttribute="personaAttribute" method="POST" action="${saveUrl}">
+            <form:form modelAttribute="bienesAttribute" method="POST" action="${saveUrl}">
                 <div class="mb-3">
-                    <form:label path="nom" class="form-label">Nombre: </form:label>
-                    <form:input path="nom" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="idInformacionFinanciera" class="form-label">idInformacionFinanciera: </form:label>
+                    <form:input path="idInformacionFinanciera" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
                     
                 <div class="mb-3">
-                    <form:label path="correo" class="form-label">Correo </form:label>
-                    <form:input path="correo" required="true" type="email" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="nombreBien" class="form-label">nombreBien </form:label>
+                    <form:input path="nombreBien" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                     <div id="emailHelp" class="form-text">Tu correo nunca será compartido.</div>
                 </div>
                     
                 <div class="mb-3">
-                    <form:label path="nacio" class="form-label">Nacionalidad </form:label>
-                    <form:input path="nacio" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="cantidadBien" class="form-label">cantidadBien </form:label>
+                    <form:input path="cantidadBien" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
                     
                 <button type="submit" class="btn btn-primary">Guardar</button>

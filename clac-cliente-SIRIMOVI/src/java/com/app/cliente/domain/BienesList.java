@@ -4,17 +4,18 @@ package com.app.cliente.domain;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="persons")
-public class PersonaList {
+@XmlRootElement(name="bienes")
+public class BienesList {
     
-    private List<Persona> data;
+    private List<Bienes> data;
 
-    public List<Persona> getData() {
+    public List<Bienes> getData() {
         return data;
     }
 
-    public void setData(List<Persona> data) {
+    public void setData(List<Bienes> data) {
         this.data = data;
     }
     
 }
+
