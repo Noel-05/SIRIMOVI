@@ -19,41 +19,37 @@
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
         </br>
 
-        <c:url var="saveUrl" value="/add" />
-        <c:url var="getPerson" value="/getall" />
+        <c:url var="saveUrl" value="/addInformacionOrganizacional" />
+        <c:url var="getPerson" value="/getallInformacionOrganizacional" />
         
         <div class="container mt-4" align="center">
             <form:form modelAttribute="informacionOrganizacionalAttribute" method="POST" action="${saveUrl}">
-                
-              <div class="mb-3">
-                    <form:label path="idInformacionOrganizacional" class="form-label">Id Informacion Organizacional: </form:label>
-                    <form:input path="idInformacionOrganizacional" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
-                </div>
-             
-              <div class="mb-3">
-                    <form:label path="idRubro" class="form-label">Id Rubro: </form:label>
-                    <form:input path="idRubro" required="true" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;" />
-                    
-                </div>
                     
                 <div class="mb-3">
                     <form:label path="nombreNegocio" class="form-label">Nombre de negocio: </form:label>
                     <form:input path="nombreNegocio" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <div id="emailHelp" class="form-text">NO utilizar tildes ni el caracter Ñ.</div>
                 </div>
                 
                 <div class="mb-3">
-                    <form:label path="cantidadEmpleados" class="form-label">Cantidad de empleados: </form:label>
-                    <form:input path="cantidadEmpleados" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
-                </div>
-                
-                  <div class="mb-3">
                     <form:label path="direccionNegocio" class="form-label">Direccion del negocio: </form:label>
                     <form:input path="direccionNegocio" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <div id="emailHelp" class="form-text">NO utilizar tildes ni el caracter Ñ.</div>
+                </div>
+                    
+                <div class="mb-3">
+                    <form:label path="idRubro" class="form-label">Id Rubro: </form:label>
+                    <form:input path="idRubro" required="true" type="number" class="form-control" style="width: 30%;" />
+                </div>
+                
+                <div class="mb-3">
+                    <form:label path="cantEmpleados" class="form-label">Cantidad de empleados: </form:label>
+                    <form:input path="cantEmpleados" required="true" type="number" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
                    
                 <div class="mb-3">
-                    <form:label path="cantidadSucursales" class="form-label">Cantidad de sucursales: </form:label>
-                    <form:input path="cantidadSucursales" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="cantSucursales" class="form-label">Cantidad de sucursales: </form:label>
+                    <form:input path="cantSucursales" required="true" type="number" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
 
                
@@ -61,6 +57,7 @@
                 <a href="${getPerson}" class="btn btn-danger">Regresar</a>
             </form:form>
         </div>
+        </br>
 
     </body>
 </html>

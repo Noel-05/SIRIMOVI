@@ -25,17 +25,10 @@ public class UsuarioController {
     private RestTemplate restTemplate = new RestTemplate();
     ModelAndView mav = new ModelAndView();
     
-    @RequestMapping("/")
-    public ModelAndView Listar(){
-        mav.setViewName("index");
-        return mav;
-    }
-    
-    
     // LISTAR
     // Mostrar TODAS los Usuarios en el JSP
-    @RequestMapping(value = "/getall", method = RequestMethod.GET)
-    public String getAll(Model model){
+    @RequestMapping(value = "/getallUsuarios", method = RequestMethod.GET)
+    public String getAllUsuarios(Model model){
         System.out.println("--> Recuperar Todas los Usuarios de mi BD.");
         
         //Preparar Tipos de datos a trabajar
@@ -65,7 +58,7 @@ public class UsuarioController {
     
     // CONSULTAR
     // Mostrar los datos de un Usuario en el JSP por su ID
-    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    @RequestMapping(value = "/getUsuarios", method = RequestMethod.GET)
     public String getUsuario(@RequestParam("idUsuario") int idUsuario, Model model) {
         System.out.println("--> Recuperando usuario con ID: " + idUsuario);
 
@@ -96,12 +89,12 @@ public class UsuarioController {
     
     // CREAR
     // Mostrar el JSP para Agregar Usuario
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String getAddPage(Model model) {
+    @RequestMapping(value = "/addUsuarios", method = RequestMethod.GET)
+    public String getAddPageUsuarios(Model model) {
         System.out.println("--> Recibiendo el Request para mostrarlo en la página de agregar.");
 
         // Creamos una persona y la agregamos al modelo
-        model.addAttribute("personaAttribute", new Usuario());
+        model.addAttribute("usuarioAttribute", new Usuario());
 
         // Esto es para enviar al JSP de WEB-INF/jsp/agregarUsuario.jsp
         return "agregarUsuario";
@@ -109,7 +102,7 @@ public class UsuarioController {
     
     // CREAR
     // Envíamos el registro y una solicitud de actualización por el metodo GET basados en la información que se envía en submit
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/addUsuarios", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("usuarioAttribute") Usuario usuario, Model model) {
         System.out.println("--> Agregar una nueva usuario.");
 
@@ -132,14 +125,14 @@ public class UsuarioController {
         }
 
         // Esto es para enviar al JSP de WEB-INF/jsp/consultarUsuarios.jsp
-        return "redirect:/getall";
+        return "redirect:/getallUsuarios";
     }
     
     
     // EDITAR
     // Mostrar y Recuperar los datos del usario a editar en el JSP
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public String getUpdatePage(@RequestParam(value="idUsuario", required=true) Integer idUsuario, Model model) {
+    @RequestMapping(value = "/updateUsuarios", method = RequestMethod.GET)
+    public String getUpdatePageUsuarios(@RequestParam(value="idUsuario", required=true) Integer idUsuario, Model model) {
     	   System.out.println("--> Recibiendo el Request para mostrarlo en la página de editar.");
     
     	//Preparar Tipos de datos a trabajar
@@ -153,7 +146,7 @@ public class UsuarioController {
 
         // Enviamos el Request via GET
         try {
-            ResponseEntity<Usuario> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/usuarios{idUsuario}", 
+            ResponseEntity<Usuario> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/usuarios/{idUsuario}", 
                     HttpMethod.GET, entity, Usuario.class, idUsuario);
             // Agregamos al Model
             model.addAttribute("usuarioAttribute", result.getBody());
@@ -168,10 +161,10 @@ public class UsuarioController {
     
     // EDITAR
     // Envíar una solicitud de actualización basados en la información enviada en el submit
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String updatePerson(@ModelAttribute("usuarioAttribute") Usuario usuario,
+    @RequestMapping(value = "/updateUsuarios", method = RequestMethod.POST)
+    public String updateUsuarios(@ModelAttribute("usuarioAttribute") Usuario usuario,
             @RequestParam(value="idUsuario",  required=true) int idUsuario, Model model) {
-        System.out.println("--> Actualizando la usuario.");
+        System.out.println("--> Actualizando el usuario.");
 
         ///Preparar Tipos de datos a trabajar
         List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
@@ -187,13 +180,13 @@ public class UsuarioController {
                 HttpMethod.PUT, entity, String.class, idUsuario);
 
         // Esto es para enviar al JSP de WEB-INF/jsp/consultarUsuarios.jsp
-        return "redirect:/getall";
+        return "redirect:/getallUsuarios";
     }
     
     
     // ELIMINAR
     // Envíamos una solicitud de eliminar
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteUsuarios", method = RequestMethod.GET)
     public String deleteUser(@RequestParam("idUsuario") int idUsuario, Model model) {
        System.out.println("--> Eliminando a la persona.");
 
@@ -207,10 +200,10 @@ public class UsuarioController {
         HttpEntity<String> entity = new HttpEntity<String>(headers);
 
         // Enviamos el Request via PUT
-        ResponseEntity<String> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/UsuariosDel/{idUsuario}", 
+        ResponseEntity<String> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/usuariosDel/{idUsuario}", 
                 HttpMethod.DELETE, entity, String.class, idUsuario);
 
         // Esto es para enviar al JSP de WEB-INF/jsp/consultarUsuarios.jsp
-        return "redirect:/getall";
+        return "redirect:/getallUsuarios";
     }
 }

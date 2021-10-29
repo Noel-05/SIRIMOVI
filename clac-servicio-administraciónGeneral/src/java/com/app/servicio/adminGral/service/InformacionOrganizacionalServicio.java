@@ -1,37 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.app.servicio.adminGral.service;
 
-import java.util.ArrayList;
-import java.util.List;
+package com.app.servicio.adminGral.service;
 
 import com.app.servicio.adminGral.connect.Conexion;
 import com.app.servicio.adminGral.domain.InformacionOrganizacional;
-
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
-
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author cg11017
- */
-@Service("InformacionOrganizacional")
+@Service("informacionOrganizacionalServicio")
 public class InformacionOrganizacionalServicio {
     
-     // Conexión a la BD.
+    // Conexión a la BD.
     Conexion con = new Conexion();
-    
     JdbcTemplate jdbcTemplate = new JdbcTemplate(con.Conectar());
     
-     // Variables a utilizar
-    private List<InformacionOrganizacional> informacionOrganizacional = new ArrayList<InformacionOrganizacional>();
+    // Variables a utilizar
+    private List<InformacionOrganizacional> informacionOrganizacionales = new ArrayList<InformacionOrganizacional>();
     List datos;
     
     
+    // LISTAR InformacionOrganizacional
+    public List<InformacionOrganizacional> getAll(){
+        System.out.println("Recuperando todos los datos de información organizacional de la BD.");
+        
+        String sql = "SELECT * FROM registro.informacionorganizacional";
+        
+        informacionOrganizacionales = this.jdbcTemplate.query(sql, new InformacionOrganizacionalRowMapper());
+        
+        System.out.println(informacionOrganizacionales);
+        
+        return informacionOrganizacionales;
+    }
+    
+    
+    // CONSULTAR informacionOrganizacional por ID
+    public InformacionOrganizacional getByID(int id){
+        System.out.println("Recuperando informacionOrganizacional con ID: " + id);
+        
+        String sql = "SELECT * FROM registro.informacionorganizacional WHERE idInformacionOrganizacional = ?";
+        
+        return this.jdbcTemplate.queryForObject(sql, new InformacionOrganizacionalRowMapper(), id);
+    }
     
     
     // CREAR InformacionOrganizacional
@@ -39,12 +49,11 @@ public class InformacionOrganizacionalServicio {
         System.out.println("Insertando nueva informacion organizacional.");
         
         try{
-            String sql = "INSERT INTO registro.informacionorganizacional(idIformacionOrganizacional, idRubro, nombreNegocio,"
-                    + " cantidadEmpleados, direccionNegocio, cantidadSucursales ) VALUES(?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO registro.informacionorganizacional(idRubro, nombreNegocio, cantidadEmpleados, direccionNegocio, cantidadSucursales ) "
+                    + "VALUES(?, ?, ?, ?, ?)";
             
-            this.jdbcTemplate.update(sql, informacionOrganizacional.getIdInfOrganizacional(), informacionOrganizacional.getIdRubro(),
-                    informacionOrganizacional.getNombreNegocio(), informacionOrganizacional.getCantEmpleados(), 
-                    informacionOrganizacional.getDireccionNegocio(), informacionOrganizacional.getCantSucursales());
+            this.jdbcTemplate.update(sql, informacionOrganizacional.getIdRubro(), informacionOrganizacional.getNombreNegocio(), 
+                    informacionOrganizacional.getCantEmpleados(), informacionOrganizacional.getDireccionNegocio(), informacionOrganizacional.getCantSucursales());
             
             System.out.println("Información Organizacional Insertada Correctamente. ");
             
@@ -58,17 +67,16 @@ public class InformacionOrganizacionalServicio {
     }
     
  
-      // EDITAR InformacionOrganizacional
+    // EDITAR InformacionOrganizacional
     public Boolean edit(InformacionOrganizacional informacionOrganizacional){
         System.out.println("Editando información organizacional con ID: " + informacionOrganizacional.getIdInfOrganizacional());
         
         try{
-            String sql = "UPDATE registro.informacionorganizacional SET idRubro=?, "
-                    + "nombreNegocio=?, cantidadEmpleados=?, direccionNegocio=?, cantidadSucursales =?  WHERE idIformacionOrganizacional = ?";
+            String sql = "UPDATE registro.informacionorganizacional SET idRubro=?, nombreNegocio=?, cantidadEmpleados=?, direccionNegocio=?, cantidadSucursales =?  "
+                    + "WHERE idInformacionOrganizacional = ?";
             
-            this.jdbcTemplate.update(sql, informacionOrganizacional.getIdInfOrganizacional(), informacionOrganizacional.getIdRubro(), 
-                                          informacionOrganizacional.getNombreNegocio(), informacionOrganizacional.getCantEmpleados(),
-                                          informacionOrganizacional.getDireccionNegocio(), informacionOrganizacional.getCantSucursales());
+            this.jdbcTemplate.update(sql, informacionOrganizacional.getIdRubro(), informacionOrganizacional.getNombreNegocio(), informacionOrganizacional.getCantEmpleados(),
+                    informacionOrganizacional.getDireccionNegocio(), informacionOrganizacional.getCantSucursales(), informacionOrganizacional.getIdInfOrganizacional());
                                
             
             System.out.println("Informacion Organizacional Actualizada Correctamente.");
@@ -82,26 +90,7 @@ public class InformacionOrganizacionalServicio {
         }
     }
     
-   
-    
-    // LISTAR InformacionOrganizacional
-    public List<InformacionOrganizacional> getAll(){
-        System.out.println("Recuperando todos los datos de información organizacional de la BD.");
-        
-        String sql = "SELECT * FROM registro.informacionorganizacional";
-        
-      informacionOrganizacional = this.jdbcTemplate.query(sql, new InformacionOrganizacionalRowMapper());
-        
-        System.out.println(informacionOrganizacional);
-        
-        return informacionOrganizacional;
-    }
-    
-    
-  
-    
-    
-    }
+}
     
     
     

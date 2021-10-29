@@ -1,13 +1,9 @@
 
 package com.app.servicio.adminGral.domain;
 
-/**
- *
- * @author cg11017
- */
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="informacionorganizacional")
+@XmlRootElement(name="informationorganizational")
 public class InformacionOrganizacional {
     int idInfOrganizacional;
     int idRubro;
@@ -68,6 +64,5 @@ public class InformacionOrganizacional {
     public String toString() {
         return "InformacionOrganizacional{" + "idInfOrganizacional=" + idInfOrganizacional + ", idRubro=" + idRubro + ", nombreNegocio=" + nombreNegocio + ", cantEmpleados=" + cantEmpleados + ", direccionNegocio=" + direccionNegocio + ", cantSucursales=" + cantSucursales + '}';
     }
-    
     
 }

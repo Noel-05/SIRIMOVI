@@ -70,9 +70,9 @@ public class UsuarioServicio {
         System.out.println("Editando Usuario con ID: " + usuario.getIdUsuario());
         
         try{
-            String sql = "UPDATE registro.usuarios SET idRol = ?, nombresUsuario = ?, apellidosUsuario = ? correoUsuario = ?, contrasenaUsuario=? WHERE idUsuario = ?";
+            String sql = "UPDATE registro.usuarios SET idRol = ?, nombresUsuario = ?, apellidosUsuario = ?, correoUsuario = ?, contrasenaUsuario=? WHERE idUsuario = ?";
             
-            this.jdbcTemplate.update(sql, usuario.getIdRol(), usuario.getNombre(), usuario.getApellido(),usuario.getCorreo(), usuario.getPassword());
+            this.jdbcTemplate.update(sql, usuario.getIdRol(), usuario.getNombre(), usuario.getApellido(),usuario.getCorreo(), usuario.getPassword(), usuario.getIdUsuario());
             
             System.out.println("Usuario Actualizado Correctamente.");
             

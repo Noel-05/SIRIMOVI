@@ -1,15 +1,10 @@
 
 package com.app.cliente.domain;
 
-/**
- *
- * @author cg11017
- */
-
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="informacionorganizacional")
+@XmlRootElement(name="informationorganizationals")
 public class InformacionOrganizacionalList {
     private List<InformacionOrganizacional> data;
 

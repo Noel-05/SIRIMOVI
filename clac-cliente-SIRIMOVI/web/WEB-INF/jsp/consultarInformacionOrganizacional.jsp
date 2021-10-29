@@ -7,8 +7,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SIRIMOVI | Información Organizacional</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!--        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
     </head>
     
     <%@include file="nav.jsp" %>
@@ -16,9 +16,9 @@
     <body>
         </br>
         
-        <c:url var="addUrl" value="/add" />
+        <c:url var="addUrl" value="/addInformacionOrganizacional" />
         
-        <h1 align="center">Consulta de Información Organizacional</h1>
+        <h1 align="center">Consulta de Informaci&oacute;n Organizacional</h1>
         </br>
         
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
@@ -31,7 +31,7 @@
         <div class="container mt-4">
             <div class="card border-dark">
                 <div class="card-header bg-dark text-white" align="center">
-                   Información Organizacional
+                   Informaci&oacute;n Organizacional
                 </div>
                 
                 <div class="card-body">
@@ -39,32 +39,27 @@
                         
                         <thead>
                             <tr>
-                                <th class="text-center" style="color:red"><strong> Id Información Organizacional </strong></th>
-                                <th class="text-center" style="color:red"><strong> Id rubro </strong></th>
                                 <th class="text-center" style="color:red"><strong> Nombre del Negocio </strong></th>
-                                <th class="text-center" style="color:red"><strong> Cantidad de empleados </strong></th>
                                 <th class="text-center" style="color:red"><strong> Dirección del Negocio </strong></th>
-                                <th class="text-center" style="color:red"><strong> Cabtidad de sucursales </strong></th>
+                                <th class="text-center" style="color:red"><strong> Id rubro </strong></th>
+                                <th class="text-center" style="color:red"><strong> Cant. de Empleados </strong></th>
+                                <th class="text-center" style="color:red"><strong> Cant. de Sucursales </strong></th>
                                 <th class="text-center" style="color:red"><strong> Acciones </strong></th>
                             </tr>
                         </thead>
                         
                         <tbody>
                             <c:forEach var="informacionOrganizacional" items="${informacionOrganizacionalGetAll}">
-                                <c:url var="editUrl" value="/update?id=${informacionOrganizacional.id}" />
-                                <c:url var="deleteUrl" value="/delete?id=${informacionOrganizacional.id}" />
-                                <c:url var="getUrl" value="/get?id=${informacionOrganizacional.id}" />
+                                <c:url var="editUrl" value="/updateInformacionOrganizacional?id=${informacionOrganizacional.idInfOrganizacional}" />
+                                <c:url var="deleteUrl" value="" />
+                                <c:url var="getUrl" value="" />
                                 
                                 <tr>
-                                    <td><c:out value="${informacionOrganizacional.idInfOrganizacional}" /></td>
-                                    <td><c:out value="${informacionOrganizacional.idRubro}" /></td>
                                     <td><c:out value="${informacionOrganizacional.nombreNegocio}" /></td>
-                                    <td><c:out value="${informacionOrganizacional.cantEmpleados}" /></td>
                                     <td><c:out value="${informacionOrganizacional.direccionNegocio}" /></td>
+                                    <td><c:out value="${informacionOrganizacional.idRubro}" /></td>
+                                    <td><c:out value="${informacionOrganizacional.cantEmpleados}" /></td>
                                     <td><c:out value="${informacionOrganizacional.cantSucursales}" /></td>
-                                    
-                                    
-                                    
                                     <td>
                                         <a href="${editUrl}" class="btn btn-warning btn-sm" title="Editar Información Organizacional"> 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">

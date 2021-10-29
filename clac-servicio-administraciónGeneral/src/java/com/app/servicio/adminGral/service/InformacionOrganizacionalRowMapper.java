@@ -6,28 +6,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
-
-
-/**
- *
- * @author cg11017
- */
 public class InformacionOrganizacionalRowMapper implements RowMapper<InformacionOrganizacional> {
     
-     @Override
-        public InformacionOrganizacional mapRow(ResultSet rs, int i) throws SQLException {
+    @Override
+    public InformacionOrganizacional mapRow(ResultSet rs, int i) throws SQLException {
             
-        InformacionOrganizacional infoOrganizacional = new InformacionOrganizacional();
+        InformacionOrganizacional infOrg = new InformacionOrganizacional();
         
-        infoOrganizacional.setIdInfOrganizacional(rs.getInt("idInformacionOrganizacional"));
-        infoOrganizacional.setIdRubro(rs.getInt("idRubro"));
-        infoOrganizacional.setNombreNegocio(rs.getString("nombreNegocio"));
-        infoOrganizacional.setCantEmpleados(rs.getInt("cantidadEmpleados"));
-        infoOrganizacional.setDireccionNegocio(rs.getString("direccionNegocio"));
-        infoOrganizacional.setCantSucursales(rs.getInt("cantidadSucursales"));
-        
+        infOrg.setIdInfOrganizacional(rs.getInt("idInformacionOrganizacional"));
+        infOrg.setIdRubro(rs.getInt("idRubro"));
+        infOrg.setNombreNegocio(rs.getString("nombreNegocio"));
+        infOrg.setCantEmpleados(rs.getInt("cantidadEmpleados"));
+        infOrg.setDireccionNegocio(rs.getString("direccionNegocio"));
+        infOrg.setCantSucursales(rs.getInt("cantidadSucursales"));
      
-        return infoOrganizacional;
+        return infOrg;
     }
     
 }
