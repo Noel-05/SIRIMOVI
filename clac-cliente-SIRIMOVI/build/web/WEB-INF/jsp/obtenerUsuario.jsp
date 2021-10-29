@@ -18,7 +18,7 @@
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
         </br>
         
-        <c:url var="getUser" value="/getall" />
+        <c:url var="getUser" value="/getallUsuarios" />
 
         <div class="container mt-4" align="center">
             <c:if test="${empty usuarioGetId}">
@@ -26,15 +26,6 @@
             </c:if>
 
             <c:if test="${!empty usuarioGetId}">
-                <div class="mb-3">
-                    <label path="idUsuario" class="form-label"><strong>ID: </strong></label>
-                    <input path="idUsuario" type="text" disabled class="form-control" style="width: 30%; text-align: center;" value="${usuarioGetId.idUsuario}"/>
-                </div>
-                
-                <div class="mb-3">
-                    <label path="idRol" class="form-label"><strong>IDRol: </strong></label>
-                    <input path="idRol" type="text" disabled class="form-control" style="width: 30%; text-align: center;" value="${usuarioGetId.idUsuario}"/>
-                </div>
                 
                 <div class="mb-3">
                     <label path="nombre" class="form-label"><strong>Nombre: </strong></label>
@@ -43,7 +34,12 @@
                 
                 <div class="mb-3">
                     <label path="apellido" class="form-label"><strong>Apellido: </strong></label>
-                    <input path="apellido" type="text" disabled class="form-control" style="width: 30%; text-align: center;" value="${usuarioGetId.nombre}"/>
+                    <input path="apellido" type="text" disabled class="form-control" style="width: 30%; text-align: center;" value="${usuarioGetId.apellido}"/>
+                </div>
+                
+                <div class="mb-3">
+                    <label path="idRol" class="form-label"><strong>IDRol: </strong></label>
+                    <input path="idRol" type="text" disabled class="form-control" style="width: 30%; text-align: center;" value="${usuarioGetId.idRol}"/>
                 </div>
                 
                 <div class="mb-3">

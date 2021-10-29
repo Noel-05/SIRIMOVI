@@ -1,13 +1,9 @@
 
 package com.app.cliente.domain;
 
-/**
- *
- * @author cg11017
- */
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="informacionorganizacional")
+@XmlRootElement(name="informationorganizational")
 public class InformacionOrganizacional {
     int idInfOrganizacional;
     int idRubro;

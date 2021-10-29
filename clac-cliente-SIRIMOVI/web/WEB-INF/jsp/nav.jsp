@@ -9,9 +9,11 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             
-            <c:url var="getPerson" value="/getall" />
             <c:url var="home" value="/" />
+            <c:url var="getPerson" value="/getall" />
             <c:url var="prueba" value="/getallPrueba" />
+            <c:url var="informacionOrganizacional" value="/getallInformacionOrganizacional" />
+            <c:url var="usuario" value="/getallUsuarios" />
                 
             <div class="container-fluid">
                 
@@ -29,13 +31,22 @@
                         
                         <a class="nav-link active" aria-current="page" href="${home}">Inicio</a>
                         
-                        <a class="nav-link" href="${getPerson}">Personas</a>
+                        <a class="nav-link" href="${usuario}">Usuario</a>
                         
-                        <a class="nav-link" href="${prueba}">Prueba</a>
+                        <a class="nav-link" href="${informacionOrganizacional}">Visitas</a>
                         
                         <a class="nav-link" href="">Monitoreos</a>
                         
-                        <a class="nav-link disabled">Visitas</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="${getPerson}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Personas
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="${getPerson}">Personas</a></li>
+                                <li><a class="dropdown-item" href="${prueba}">Prueba Personas</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            </ul>
+                        </li>
                     
                     </div>
                 </div>

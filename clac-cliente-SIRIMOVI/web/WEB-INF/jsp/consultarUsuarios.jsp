@@ -7,8 +7,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SIRIMOVI | Usuario</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!--        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
     </head>
     
     <%@include file="nav.jsp" %>
@@ -16,7 +16,7 @@
     <body>
         </br>
         
-        <c:url var="addUrl" value="/add" />
+        <c:url var="addUrl" value="/addUsuarios" />
         
         <h1 align="center">Consulta de Usuarios</h1>
         </br>
@@ -39,25 +39,24 @@
                         
                         <thead>
                             <tr>
-                                <th class="text-center" style="color:red"><strong> IdRol </strong></th>
                                 <th class="text-center" style="color:red"><strong> Nombres </strong></th>
                                 <th class="text-center" style="color:red"><strong> Apellidos </strong></th>
-                                <th class="text-center" style="color:red"><strong> Correos </strong></th>
+                                <th class="text-center" style="color:red"><strong> IdRol </strong></th>
+                                <th class="text-center" style="color:red"><strong> Correo </strong></th>
                                 <th class="text-center" style="color:red"><strong> Contraseña </strong></th>
-
                             </tr>
                         </thead>
                         
                         <tbody>
-                            <c:forEach var="persona" items="${usuariosGetAll}">
-                                <c:url var="editUrl" value="/update?idUsuario=${usuario.idUsuario}" />
-                                <c:url var="deleteUrl" value="/delete?idUsuario=${usuario.idUsuario}" />
-                                <c:url var="getUrl" value="/get?idUsuario=${usuario.idUsuario}" />
+                            <c:forEach var="usuario" items="${usuariosGetAll}">
+                                <c:url var="editUrl" value="/updateUsuarios?idUsuario=${usuario.idUsuario}" />
+                                <c:url var="deleteUrl" value="/deleteUsuarios?idUsuario=${usuario.idUsuario}" />
+                                <c:url var="getUrl" value="/getUsuarios?idUsuario=${usuario.idUsuario}" />
                                 
                                 <tr>
-                                    <td><c:out value="${usuario.idRol}" /></td>
                                     <td><c:out value="${usuario.nombre}" /></td>
                                     <td><c:out value="${usuario.apellido}" /></td>
+                                    <td><c:out value="${usuario.idRol}" /></td>
                                     <td><c:out value="${usuario.correo}" /></td>
                                     <td><c:out value="${usuario.password}" /></td>
                                     <td>
@@ -91,7 +90,7 @@
         </div>
 
         <c:if test="${empty usuariosGetAll}" >
-            No hay personas en la Base de Datos. Puedes <a href="${addUrl}">Agregar</a> un usuario.
+            No hay Usuarios Registrados en la Base de Datos. Puedes <a href="${addUrl}">Agregar</a> un Usuario.
         </c:if>
             
     </body>
