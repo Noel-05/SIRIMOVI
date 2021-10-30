@@ -20,7 +20,7 @@
         </br>
 
         <c:url var="saveUrl" value="/addProducto" />
-        <c:url var="getPerson" value="/getallProducto" />
+        <c:url var="getProducto" value="/getallProducto" />
         
         <div class="container mt-4" align="center">
             <form:form modelAttribute="productoAttribute" method="POST" action="${saveUrl}">
@@ -31,7 +31,7 @@
                 </div>
                     
                 <div class="mb-3">
-                    <form:label path="nombre" class="form-label">Nombre </form:label>
+                    <form:label path="nombre" class="form-label">Nombre Producto </form:label>
                     <form:input path="nombre" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                     <div id="emailHelp" class="form-text"></div>
                 </div>
@@ -47,9 +47,10 @@
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Guardar</button>
-                <a href="${getPerson}" class="btn btn-danger">Regresar</a>
+                <a href="${getProducto}" class="btn btn-danger">Regresar</a>
             </form:form>
         </div>
+        </br>
 
     </body>
 </html>

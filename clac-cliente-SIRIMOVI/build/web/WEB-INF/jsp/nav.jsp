@@ -14,6 +14,8 @@
             <c:url var="prueba" value="/getallPrueba" />
             <c:url var="informacionOrganizacional" value="/getallInformacionOrganizacional" />
             <c:url var="usuario" value="/getallUsuarios" />
+            <c:url var="monitoreo" value="/getallMonitoreos" />
+            <c:url var="producto" value="/getallProducto" />
                 
             <div class="container-fluid">
                 
@@ -35,7 +37,9 @@
                         
                         <a class="nav-link" href="${informacionOrganizacional}">Visitas</a>
                         
-                        <a class="nav-link" href="">Monitoreos</a>
+                        <a class="nav-link" href="${monitoreo}">Monitoreos</a>
+                        
+                        <a class="nav-link" href="${producto}">Productos</a>
                         
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="${getPerson}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

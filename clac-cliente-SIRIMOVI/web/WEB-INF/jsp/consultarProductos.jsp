@@ -40,7 +40,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center" style="color:red"><strong> Id Informacion Comercial </strong></th>
-                                <th class="text-center" style="color:red"><strong> Nombre </strong></th>
+                                <th class="text-center" style="color:red"><strong> Nombre Producto</strong></th>
                                 <th class="text-center" style="color:red"><strong> Precio Venta </strong></th>
                                 <th class="text-center" style="color:red"><strong> Precio Fabricacion </strong></th>
                             </tr>
@@ -48,15 +48,15 @@
                         
                         <tbody>
                             <c:forEach var="producto" items="${productosGetAll}">
-                                <c:url var="editUrl" value="/update?id=${producto.id}" />
-                                <c:url var="deleteUrl" value="/delete?id=${producto.id}" />
-                                <c:url var="getUrl" value="/get?id=${producto.id}" />
+                                <c:url var="editUrl" value="/updateProducto?id=${producto.id}" />
+                                <c:url var="deleteUrl" value="" />
+                                <c:url var="getUrl" value="/getProducto?id=${producto.id}" />
                                 
                                 <tr>
                                     <td><c:out value="${producto.idInformacionComercial}" /></td>
                                     <td><c:out value="${producto.nombre}" /></td>
-                                    <td><c:out value="${producto.precioVenta}" /></td>
-                                    <td><c:out value="${producto.precioFabricacion}" /></td>
+                                    <td>$ <c:out value="${producto.precioVenta}" /></td>
+                                    <td>$ <c:out value="${producto.precioFabricacion}" /></td>
                                     <td>
                                         <a href="${editUrl}" class="btn btn-warning btn-sm" title="Editar Producto"> 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
