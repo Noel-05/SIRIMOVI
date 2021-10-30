@@ -16,6 +16,7 @@
             <c:url var="usuario" value="/getallUsuarios" />
             <c:url var="monitoreo" value="/getallMonitoreos" />
             <c:url var="producto" value="/getallProducto" />
+            <c:url var="bien" value="/getallBienes" />
                 
             <div class="container-fluid">
                 
@@ -40,6 +41,8 @@
                         <a class="nav-link" href="${monitoreo}">Monitoreos</a>
                         
                         <a class="nav-link" href="${producto}">Productos</a>
+                        
+                        <a class="nav-link" href="${bien}">Bienes</a>
                         
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="${getPerson}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
