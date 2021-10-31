@@ -13,6 +13,7 @@
             <c:url var="getPerson" value="/getall" />
             <c:url var="prueba" value="/getallPrueba" />
             <c:url var="informacionOrganizacional" value="/getallInformacionOrganizacional" />
+            <c:url var="informacionComercial" value="/getallInformacionComercial" />
             <c:url var="usuario" value="/getallUsuarios" />
             <c:url var="monitoreo" value="/getallMonitoreos" />
             <c:url var="producto" value="/getallProducto" />
@@ -37,6 +38,8 @@
                         <a class="nav-link" href="${usuario}">Usuario</a>
                         
                         <a class="nav-link" href="${informacionOrganizacional}">Visitas</a>
+                        
+                        <a class="nav-link" href="${informacionComercial}">Inf. Comercial</a>
                         
                         <a class="nav-link" href="${monitoreo}">Monitoreos</a>
                         
