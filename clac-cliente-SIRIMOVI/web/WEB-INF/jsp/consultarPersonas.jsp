@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SIRIMOVI | Persona</title>
+        <title>SIRIMOVI | Informacion Financiera</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </head>
@@ -16,9 +16,9 @@
     <body>
         </br>
         
-        <c:url var="addUrl" value="/add" />
+        <c:url var="addUrl" value="informacionF/add" />
         
-        <h1 align="center">Consulta de Personas</h1>
+        <h1 align="center">Informacion Financiera</h1>
         </br>
         
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
@@ -31,7 +31,7 @@
         <div class="container mt-4">
             <div class="card border-dark">
                 <div class="card-header bg-dark text-white" align="center">
-                    Personas
+                    Informacion Financiera
                 </div>
                 
                 <div class="card-body">
@@ -39,23 +39,27 @@
                         
                         <thead>
                             <tr>
-                                <th class="text-center" style="color:red"><strong> Nombres </strong></th>
-                                <th class="text-center" style="color:red"><strong> Correo </strong></th>
-                                <th class="text-center" style="color:red"><strong> Nacionalidad </strong></th>
+                                <th class="text-center" style="color:red"><strong> Id Informacion Financiera </strong></th>
+                                <th class="text-center" style="color:red"><strong> Id Informacion Organizacional </strong></th>
+                                <th class="text-center" style="color:red"><strong> Rango Salarios Empleados </strong></th>
+                                <th class="text-center" style="color:red"><strong> Saldo Deudas Actual </strong></th>
+                                <th class="text-center" style="color:red"><strong> Saldo Liquidez </strong></th>
                                 <th class="text-center" style="color:red"><strong> Acciones </strong></th>
                             </tr>
                         </thead>
                         
                         <tbody>
-                            <c:forEach var="persona" items="${personasGetAll}">
-                                <c:url var="editUrl" value="/update?id=${persona.id}" />
-                                <c:url var="deleteUrl" value="/delete?id=${persona.id}" />
-                                <c:url var="getUrl" value="/get?id=${persona.id}" />
+                            <c:forEach var="informacionfinanciera" items="${infoGetAll}">
+                                <c:url var="editUrl" value="/update?id=${informacionfinanciera.idInformacionFinanciera}" />
+                                <c:url var="deleteUrl" value="/delete?id=${informacionfinanciera.idInformacionFinanciera}" />
+                                <c:url var="getUrl" value="/get?id=${informacionfinanciera.idInformacionFinanciera}" />
                                 
                                 <tr>
-                                    <td><c:out value="${persona.nom}" /></td>
-                                    <td><c:out value="${persona.correo}" /></td>
-                                    <td><c:out value="${persona.nacio}" /></td>
+                                    <td><c:out value="${informacionfinanciera.idInformacionFinanciera}" /></td>
+                                    <td><c:out value="${informacionfinanciera.idInformacionOrganizacional}" /></td>
+                                    <td><c:out value="${informacionfinanciera.rangoSalarioEmpleados}" /></td>
+                                    <td><c:out value="${informacionfinanciera.saldoDeudasActual}" /></td>
+                                    <td><c:out value="${informacionfinanciera.saldoLiquidez}" /></td>
                                     <td>
                                         <a href="${editUrl}" class="btn btn-warning btn-sm" title="Editar Persona"> 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">

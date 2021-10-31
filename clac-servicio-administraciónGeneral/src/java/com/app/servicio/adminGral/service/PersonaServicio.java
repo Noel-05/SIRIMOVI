@@ -16,21 +16,19 @@ public class PersonaServicio {
     JdbcTemplate jdbcTemplate = new JdbcTemplate(con.Conectar());
     
     // Variables a utilizar
-    private List<Persona> personas = new ArrayList<Persona>();
+    private List<Persona> persona = new ArrayList<Persona>();
     List datos;
     
     
     // LISTAR todas las personas
     public List<Persona> getAll(){
-        System.out.println("Recuperando todas las personas de la BD.");
+        System.out.println("Recuperando toda la informacion financiera de la BD.");
         
-        String sql = "SELECT * FROM registro.persona";
+        String sql = "SELECT * FROM registro.informacionfinanciera";
+        persona = this.jdbcTemplate.query(sql, new PersonaRowMapper());
+        System.out.println(persona);
         
-        personas = this.jdbcTemplate.query(sql, new PersonaRowMapper());
-        
-        System.out.println(personas);
-        
-        return personas;
+        return persona;
     }
     
     
@@ -63,7 +61,6 @@ public class PersonaServicio {
             return null;
         }
     }
-    
     
     // EDITAR persona
     public Boolean edit(Persona persona){

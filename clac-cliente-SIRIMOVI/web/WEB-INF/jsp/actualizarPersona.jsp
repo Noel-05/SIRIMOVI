@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Actualizar Persona</title>
+        <title>Informacion Financiera</title>
     </head>
     
     <%@include file="nav.jsp" %>
@@ -13,31 +13,41 @@
     <body>
         </br>
         
-        <h1 align="center">Editar Persona</h1>
+        <h1 align="center">Editar InformacionFinanciera</h1>
         </br>
         
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
         </br>
 
-        <c:url var="saveUrl" value="/update?id=${personaAttribute.id}" />
+        <c:url var="saveUrl" value="/update?id=${inforAttribute.id}" />
         <c:url var="getPerson" value="/getall" />
         
         <div class="container mt-4" align="center">
-            <form:form modelAttribute="personaAttribute" method="POST" action="${saveUrl}">
+            <form:form modelAttribute="inforAttribute" method="POST" action="${saveUrl}">
                 <div class="mb-3">
-                    <form:label path="nom" class="form-label">Nombre: </form:label>
-                    <form:input path="nom" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="idInformacionFinanciera" class="form-label">id Informacion Financiera: </form:label>
+                    <form:input path="idInformacionFinanciera" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
                     
                 <div class="mb-3">
-                    <form:label path="correo" class="form-label">Correo </form:label>
-                    <form:input path="correo" required="true" type="email" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="idInformacionOrganizacional" class="form-label">id Informacion Organizacional </form:label>
+                    <form:input path="idInformacionOrganizacional" required="true" type="email" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                     <div id="emailHelp" class="form-text">Tu correo nunca será compartido.</div>
                 </div>
                     
                 <div class="mb-3">
-                    <form:label path="nacio" class="form-label">Nacionalidad </form:label>
-                    <form:input path="nacio" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="rangoSalariosEmpleados" class="form-label">rango Salarios Empleado </form:label>
+                    <form:input path="rangoSalariosEmpleados" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                </div>
+                
+                <div class="mb-3">
+                    <form:label path="saldoDeudasActual" class="form-label">saldo Deudas Actual </form:label>
+                    <form:input path="saldoDeudasActual" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                </div>
+                
+                <iv class="mb-3">
+                    <form:label path="saldoLiquidez" class="form-label">saldo Liquidez </form:label>
+                    <form:input path="saldoLiquidez" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
                     
                 <button type="submit" class="btn btn-primary">Guardar</button>
