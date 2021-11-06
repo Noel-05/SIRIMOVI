@@ -19,7 +19,7 @@
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
         </br>
 
-        <c:url var="saveUrl" value="/update?id=${productoAttribute.id}" />
+        <c:url var="saveUrl" value="/updateProducto?id=${productoAttribute.id}" />
         <c:url var="getProducto" value="/getallProducto" />
         
         <div class="container mt-4" align="center">
@@ -30,19 +30,18 @@
                 </div>
                     
                 <div class="mb-3">
-                    <form:label path="nombre" class="form-label">Nombre: </form:label>
+                    <form:label path="nombre" class="form-label">Nombre Producto: </form:label>
                     <form:input path="nombre" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
-                    
                 </div>
                     
                 <div class="mb-3">
                     <form:label path="precioVenta" class="form-label">Precio Venta: </form:label>
-                    <form:input path="precioVenta" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:input path="precioVenta" required="true" type="number" step= "0.01" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
                     
                 <div class="mb-3">
                     <form:label path="precioFabricacion" class="form-label">Precio Fabricacion: </form:label>
-                    <form:input path="precioFabricacion" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:input path="precioFabricacion" required="true" type="number" step= "0.01" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Guardar</button>
@@ -50,6 +49,7 @@
                 
             </form:form>
         </div>
+        </br>
 
     </body>
 </html>

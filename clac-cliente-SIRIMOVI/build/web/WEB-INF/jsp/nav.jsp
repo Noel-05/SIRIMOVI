@@ -9,8 +9,15 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             
-            <c:url var="getProduct" value="/getallProducto" />
             <c:url var="home" value="/" />
+            <c:url var="getPerson" value="/getall" />
+            <c:url var="prueba" value="/getallPrueba" />
+            <c:url var="informacionOrganizacional" value="/getallInformacionOrganizacional" />
+            <c:url var="informacionComercial" value="/getallInformacionComercial" />
+            <c:url var="usuario" value="/getallUsuarios" />
+            <c:url var="monitoreo" value="/getallMonitoreos" />
+            <c:url var="producto" value="/getallProducto" />
+            <c:url var="bien" value="/getallBienes" />
                 
             <div class="container-fluid">
                 
@@ -28,11 +35,28 @@
                         
                         <a class="nav-link active" aria-current="page" href="${home}">Inicio</a>
                         
-                        <a class="nav-link" href="${getProduct}">Productos</a>
+                        <a class="nav-link" href="${usuario}">Usuario</a>
                         
-                        <a class="nav-link" href="#">Monitoreos</a>
+                        <a class="nav-link" href="${informacionOrganizacional}">Visitas</a>
                         
-                        <a class="nav-link disabled">Visitas</a>
+                        <a class="nav-link" href="${informacionComercial}">Inf. Comercial</a>
+                        
+                        <a class="nav-link" href="${monitoreo}">Monitoreos</a>
+                        
+                        <a class="nav-link" href="${producto}">Productos</a>
+                        
+                        <a class="nav-link" href="${bien}">Bienes</a>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="${getPerson}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Personas
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="${getPerson}">Personas</a></li>
+                                <li><a class="dropdown-item" href="${prueba}">Prueba Personas</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            </ul>
+                        </li>
                     
                     </div>
                 </div>

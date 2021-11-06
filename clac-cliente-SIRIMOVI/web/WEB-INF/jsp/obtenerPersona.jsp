@@ -12,20 +12,20 @@
     <body>
         </br>
         
-        <h1 align="center">Obtener Producto</h1>
+        <h1 align="center">Obtener Persona</h1>
         </br>
         
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
         </br>
         
-        <c:url var="getPerson" value="/getallperson" />
+        <c:url var="getPerson" value="/getall" />
 
         <div class="container mt-4" align="center">
             <c:if test="${empty personaGetId}">
                 No se encontraron Registros!
             </c:if>
 
-            <c:if test="${!empty productoGetId}">
+            <c:if test="${!empty personaGetId}">
                 <div class="mb-3">
                     <label path="id" class="form-label"><strong>ID: </strong></label>
                     <input path="id" type="text" disabled class="form-control" style="width: 30%; text-align: center;" value="${personaGetId.id}"/>

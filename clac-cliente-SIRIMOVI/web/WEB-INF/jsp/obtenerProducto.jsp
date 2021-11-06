@@ -18,7 +18,7 @@
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
         </br>
         
-        <c:url var="getProducto" value="/getallProduct" />
+        <c:url var="getProducto" value="/getallProducto" />
 
         <div class="container mt-4" align="center">
             <c:if test="${empty productoGetId}">
@@ -27,18 +27,13 @@
 
             <c:if test="${!empty productoGetId}">
                 <div class="mb-3">
-                    <label path="id" class="form-label"><strong>ID: </strong></label>
-                    <input path="id" type="number" disabled class="form-control" style="width: 30%; text-align: center;" value="${productoGetId.id}"/>
+                    <label path="nombre" class="form-label"><strong>Nombre Producto </strong></label>
+                    <input path="nombre" type="text" disabled class="form-control" style="width: 30%; text-align: center;" value="${productoGetId.nombre}"/>
                 </div>
                 
                 <div class="mb-3">
                     <label path="idInformacionComercial" class="form-label"><strong>Id Informacion Comercial: </strong></label>
                     <input path="idInformacionComercial" type="number" disabled class="form-control" style="width: 30%; text-align: center;" value="${productoGetId.idInformacionComercial}"/>
-                </div>
-                    
-                <div class="mb-3">
-                    <label path="nombre" class="form-label"><strong>Nombre </strong></label>
-                    <input path="nombre" type="text" disabled class="form-control" style="width: 30%; text-align: center;" value="${productoGetId.nombre}"/>
                 </div>
                     
                 <div class="mb-3">
@@ -54,6 +49,7 @@
                 <p align="center"><a href="${getProducto}" class="btn btn-danger">Regresar</a></p>
             </c:if>
         </div>
+        </br>
 
     </body>
 </html>

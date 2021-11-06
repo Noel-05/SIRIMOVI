@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.app.cliente.domain;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -13,8 +9,8 @@ public class Producto {
     int id;
     int idInformacionComercial;
     String nombre;
-    Float precioVenta;
-    Float precioFabricacion;
+    float precioVenta;
+    float precioFabricacion;
 
     public int getId() {
         return id;
@@ -40,7 +36,7 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public Float getPrecioVenta() {
+    public float getPrecioVenta() {
         return precioVenta;
     }
 
@@ -48,7 +44,7 @@ public class Producto {
         this.precioVenta = precioVenta;
     }
 
-    public Float getPrecioFabricacion() {
+    public float getPrecioFabricacion() {
         return precioFabricacion;
     }
 
@@ -60,6 +56,5 @@ public class Producto {
     public String toString() {
         return "Producto{" + "id=" + id + ", idInformacionComercial=" + idInformacionComercial + ", nombre=" + nombre + ", precioVenta=" + precioVenta + ", precioFabricacion=" + precioFabricacion + '}';
     }
-       
-    
+
 }

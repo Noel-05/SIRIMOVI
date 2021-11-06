@@ -24,9 +24,9 @@ public class ProductoServicio {
     List datos;
        
     
-    // LISTAR todas las personas
+    // LISTAR todas los productos
     public List<Producto> getAll(){
-        System.out.println("Recuperando todas las personas de la BD.");
+        System.out.println("Recuperando todos los productos de la BD.");
         
         String sql = "SELECT * FROM registro.productos";
         
@@ -68,14 +68,15 @@ public class ProductoServicio {
         return this.jdbcTemplate.queryForObject(sql, new ProductoRowMapper(), id);
     }
     
+    
     // EDITAR Producto
     public Boolean edit(Producto producto){
         System.out.println("Editando producto con ID: " + producto.getId());
         
         try{
-            String sql = "UPDATE registro.productos SET idInformacionComercial=?, nombreProducto=?, precioVenta=?, precioFabricacion WHERE Id = ?";
+            String sql = "UPDATE registro.productos SET idInformacionComercial=?, nombreProducto=?, precioVenta=?, precioFabricacion=? WHERE idProducto = ?";
             
-            this.jdbcTemplate.update(sql, producto.getIdInformacionComercial(), producto.getNombre(), producto.getPrecioVenta(),producto.getPrecioFabricacion(), producto.getId());
+            this.jdbcTemplate.update(sql, producto.getIdInformacionComercial(), producto.getNombre(), producto.getPrecioVenta(), producto.getPrecioFabricacion(), producto.getId());
             
             System.out.println("Producto Actualizado Correctamente.");
             

@@ -44,6 +44,7 @@
                 <a href="${getPerson}" class="btn btn-danger">Regresar</a>
             </form:form>
         </div>
+        </br>
 
     </body>
 </html>
