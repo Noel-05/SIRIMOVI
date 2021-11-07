@@ -18,7 +18,7 @@
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
         </br>
         
-        <c:url var="/get" value="/monitoreosUp" />
+        <c:url var="getMonitoreos" value="/getallMonitoreos" />
 
         <div class="container mt-4" align="center">
             <c:if test="${empty monitoreoGetId}">

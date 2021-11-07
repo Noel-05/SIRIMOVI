@@ -341,6 +341,400 @@ public class ClienteController {
         }
         
         // Esto es para enviar al JSP de WEB-INF/jsp/consultarMonitoreos.jsp
+<<<<<<< Updated upstream
         return "consultarMonitoreos";
+=======
+        return "consultarMonitoreo";
+    }
+    
+    // CONSULTAR
+    // Mostrar los datos de una monitoreo en el JSP por su ID
+    @RequestMapping(value = "/getMonitoreos", method = RequestMethod.GET)
+    public String getMonitoreo(@RequestParam("id") int id, Model model) {
+        System.out.println("--> Recuperando monitoreo con ID: " + id);
+
+        //Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<Monitoreo> entity = new HttpEntity<Monitoreo>(headers);
+
+        // Enviamos el Request via GET
+        try {
+            ResponseEntity<Monitoreo> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/monitoreos/{id}", 
+                    HttpMethod.GET, entity, Monitoreo.class, id);
+            // Agregamos al Model
+            model.addAttribute("monitoreoGetId", result.getBody());
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        // Esto es para enviar al JSP de WEB-INF/jsp/obtenerMonitoreo.jsp
+        return "obtenerMonitoreo";
+    }
+    
+    
+    // LISTAR
+    // Mostrar TODAS las personas en el JSP
+    @RequestMapping(value = "/getallProducto", method = RequestMethod.GET)
+    public String getAllProductos(Model model){
+        System.out.println("--> Recuperar Todas los productos de mi BD.");
+        
+        //Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+        
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<Producto> entity = new HttpEntity<Producto>(headers);
+        
+        //Enviamos el request via GET
+        try{
+            ResponseEntity<ProductoList> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/productos", 
+                    HttpMethod.GET, entity, ProductoList.class);
+            // Agregamos al Model
+            model.addAttribute("productosGetAll", result.getBody().getData());
+        
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        // Esto es para enviar al JSP de WEB-INF/jsp/consultarPersonas.jsp
+        return "consultarProductos";
+    }
+    
+    
+    // CONSULTAR
+    // Mostrar los datos de una persona en el JSP por su ID
+    @RequestMapping(value = "/getProducto", method = RequestMethod.GET)
+    public String getProducto(@RequestParam("id") int id, Model model) {
+        System.out.println("--> Recuperando producto con ID: " + id);
+
+        //Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<Producto> entity = new HttpEntity<Producto>(headers);
+
+        // Enviamos el Request via GET
+        try {
+            ResponseEntity<Producto> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/productos/{id}", 
+                    HttpMethod.GET, entity, Producto.class, id);
+            // Agregamos al Model
+            model.addAttribute("productoGetId", result.getBody());
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        // Esto es para enviar al JSP de WEB-INF/jsp/obtenerPersona.jsp
+        return "obtenerProducto";
+    }
+    
+    
+    // CREAR
+    // Mostrar el JSP para Agregar Producto
+    @RequestMapping(value = "/addProducto", method = RequestMethod.GET)
+    public String getAddPageProducto(Model model) {
+        System.out.println("--> Recibiendo el Request para mostrarlo en la página de agregar.");
+
+        // Creamos un nuevo producto y lo agregamos al modelo
+        model.addAttribute("productoAttribute", new Producto());
+
+        // Esto es para enviar al JSP de WEB-INF/jsp/agregarPersona.jsp
+        return "agregarProducto";
+    }
+    
+    // CREAR
+    // Envíamos el registro y una solicitud de actualización por el metodo GET basados en la información que se envía en submit
+    @RequestMapping(value = "/addProducto", method = RequestMethod.POST)
+    public String addProducto(@ModelAttribute("productoAttribute") Producto producto, Model model) {
+        System.out.println("--> Agregar un nuevo Producto.");
+
+        //Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<Producto> entity = new HttpEntity<Producto>(producto, headers);
+
+        // Enviamos el Request via POST
+        try {
+            ResponseEntity<Producto> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/addProducto", 
+                    HttpMethod.POST, entity, Producto.class);
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        // Esto es para enviar al JSP de WEB-INF/jsp/consultarPersonas.jsp
+        return "redirect:/getallProducto";
+    }
+    
+    
+    // EDITAR
+    // Mostrar y Recuperar los datos del producto a editar en el JSP
+    @RequestMapping(value = "/updateProducto", method = RequestMethod.GET)
+    public String getUpdatePageProducto(@RequestParam(value="id", required=true) Integer id, Model model) {
+    	   System.out.println("--> Recibiendo el Request para mostrarlo en la página de editar.");
+    
+    	//Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<Producto> entity = new HttpEntity<Producto>(headers);
+
+        // Enviamos el Request via GET
+        try {
+            ResponseEntity<Producto> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/productos/{id}", 
+                    HttpMethod.GET, entity, Producto.class, id);
+            // Agregamos al Model
+            model.addAttribute("productoAttribute", result.getBody());
+
+        } catch (Exception e) {
+                System.out.println(e);
+        }
+    	
+    	// Esto es para enviar al JSP de WEB-INF/jsp/actualizarPersona.jsp
+    	return "actualizarProducto";
+    }
+    
+    // EDITAR
+    // Envíar una solicitud de actualización basados en la información enviada en el submit
+    @RequestMapping(value = "/updateProducto", method = RequestMethod.POST)
+    public String updateProducto(@ModelAttribute("productoAttribute") Producto producto,
+            @RequestParam(value="id",  required=true) int id, Model model) {
+        System.out.println("--> Actualizando el Producto.");
+
+        ///Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<Producto> entity = new HttpEntity<Producto>(producto, headers);
+
+        // Enviamos el Request via PUT
+        ResponseEntity<String> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/productosUp/{id}", 
+                HttpMethod.PUT, entity, String.class, id);
+
+        // Esto es para enviar al JSP de WEB-INF/jsp/consultarPersonas.jsp
+        return "redirect:/getallProducto";
+    }
+    
+    
+    // LISTAR
+    // Mostrar TODAS las personas en el JSP
+    @RequestMapping(value = "/getallBienes", method = RequestMethod.GET)
+    public String getAllBienes(Model model){
+        System.out.println("--> Recuperar Todos los Bienes de mi BD.");
+        
+        //Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+        
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<Bienes> entity = new HttpEntity<Bienes>(headers);
+        
+        //Enviamos el request via GET
+        try{
+            ResponseEntity<BienesList> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/bienes", 
+                    HttpMethod.GET, entity, BienesList.class);
+            // Agregamos al Model
+            model.addAttribute("bienesGetAll", result.getBody().getData());
+        
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        // Esto es para enviar al JSP de WEB-INF/jsp/consultarPersonas.jsp
+        return "consultarBienes";
+    }
+    
+
+    // CREAR
+    // Mostrar el JSP para Agregar Bienes
+    @RequestMapping(value = "/bienesAdd", method = RequestMethod.GET)
+    public String getAddPageBienes(Model model) {
+        System.out.println("--> Recibiendo el Request para mostrarlo en la página de agregar.");
+
+        // Creamos una persona y la agregamos al modelo
+        model.addAttribute("bienesAttribute", new Bienes());
+
+        // Esto es para enviar al JSP de WEB-INF/jsp/agregarPersona.jsp
+        return "agregarBienes";
+    }
+    
+    // CREAR
+    // Envíamos el registro y una solicitud de actualización por el metodo GET basados en la información que se envía en submit
+    @RequestMapping(value = "/bienesAdd", method = RequestMethod.POST)
+    public String addBienes(@ModelAttribute("bienesAttribute") Bienes bien, Model model) {
+        System.out.println("--> Agregar una nueva bienes.");
+
+        //Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<Bienes> entity = new HttpEntity<Bienes>(bien, headers);
+
+        // Enviamos el Request via POST
+        try {
+            ResponseEntity<Bienes> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/bienesAdd", 
+                    HttpMethod.POST, entity, Bienes.class);
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        // Esto es para enviar al JSP de WEB-INF/jsp/consultarPersonas.jsp
+        return "redirect:/getall";
+    }
+    
+    
+    // LISTAR
+    // Mostrar TODAS las informacionesComerciales en el JSP
+    @RequestMapping(value = "/getallInformacionComercial", method = RequestMethod.GET)
+    public String getAllInformacionComercial(Model model){
+        System.out.println("--> Recuperar Todas las Informaciones Comerciales de mi BD.");
+        
+        //Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+        
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<InformacionComercial> entity = new HttpEntity<InformacionComercial>(headers);
+        
+        //Enviamos el request via GET
+        try{
+            ResponseEntity<InformacionComercialList> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/informacionComercial", 
+                    HttpMethod.GET, entity, InformacionComercialList.class);
+            // Agregamos al Model
+            model.addAttribute("informacionComercialGetAll", result.getBody().getData());
+        
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        // Esto es para enviar al JSP de WEB-INF/jsp/consultarPersonas.jsp
+        return "consultarInformacionComercial";
+    }
+    
+    
+    // CREAR
+    // Mostrar el JSP para Agregar Informacion Comercial
+    @RequestMapping(value = "/addInformacionComercial", method = RequestMethod.GET)
+    public String getAddPageInformacionComercial(Model model) {
+        System.out.println("--> Recibiendo el Request para mostrarlo en la página de agregar.");
+
+        // Creamos una Informacion Comercial y la agregamos al modelo
+        model.addAttribute("informacionComercialAttribute", new InformacionComercial());
+
+        // Esto es para enviar al JSP de WEB-INF/jsp/agregarPersona.jsp
+        return "agregarInformacionComercial";
+    }
+    
+    // CREAR
+    // Envíamos el registro y una solicitud de actualización por el metodo GET basados en la información que se envía en submit
+    @RequestMapping(value = "/addInformacionComercial", method = RequestMethod.POST)
+    public String addInformacionComercial(@ModelAttribute("informacionComercialAttribute") InformacionComercial infComercial, Model model) {
+        System.out.println("--> Agregar una nueva Informacion Comercial.");
+
+        //Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<InformacionComercial> entity = new HttpEntity<InformacionComercial>(infComercial, headers);
+
+        // Enviamos el Request via POST
+        try {
+            ResponseEntity<InformacionComercial> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/informacionComercialAdd", 
+                    HttpMethod.POST, entity, InformacionComercial.class);
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        // Esto es para enviar al JSP de WEB-INF/jsp/consultarPersonas.jsp
+        return "redirect:/getallInformacionComercial";
+    }
+    
+    
+    // EDITAR
+    // Mostrar y Recuperar los datos de la informacion comercial a editar en el JSP
+    @RequestMapping(value = "/updateInformacionComercial", method = RequestMethod.GET)
+    public String getUpdatePageInformacionComercial(@RequestParam(value="id", required=true) Integer id, Model model) {
+    	   System.out.println("--> Recibiendo el Request para mostrarlo en la página de editar.");
+    
+    	//Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<InformacionComercial> entity = new HttpEntity<InformacionComercial>(headers);
+
+        // Enviamos el Request via GET
+        try {
+            ResponseEntity<InformacionComercial> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/informacionComercial/{id}", 
+                    HttpMethod.GET, entity, InformacionComercial.class, id);
+            // Agregamos al Model
+            model.addAttribute("informacionComercialAttribute", result.getBody());
+
+        } catch (Exception e) {
+                System.out.println(e);
+        }
+    	
+    	// Esto es para enviar al JSP de WEB-INF/jsp/actualizarPersona.jsp
+    	return "actualizarInformacionComercial";
+    }
+    
+    // EDITAR
+    // Envíar una solicitud de actualización basados en la información enviada en el submit
+    @RequestMapping(value = "/updateInformacionComercial", method = RequestMethod.POST)
+    public String updateInformacionComercial(@ModelAttribute("informacionComercialAttribute") InformacionComercial infComercial,
+            @RequestParam(value="id",  required=true) int id, Model model) {
+        System.out.println("--> Actualizando la Infomracion Comercial.");
+
+        ///Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<InformacionComercial> entity = new HttpEntity<InformacionComercial>(infComercial, headers);
+
+        // Enviamos el Request via PUT
+        ResponseEntity<String> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/informacionComercialUp/{id}", 
+                HttpMethod.PUT, entity, String.class, id);
+
+        // Esto es para enviar al JSP de WEB-INF/jsp/consultarPersonas.jsp
+        return "redirect:/getallInformacionComercial";
+>>>>>>> Stashed changes
     }
 }
