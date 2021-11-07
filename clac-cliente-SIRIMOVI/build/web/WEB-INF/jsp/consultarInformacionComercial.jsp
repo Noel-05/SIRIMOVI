@@ -17,14 +17,21 @@
         </br>
         
         <c:url var="addUrl" value="/addInformacionComercial" />
+        <c:url var="getInfOrg" value="/getallInformacionOrganizacional" />
+        <c:url var="getProd" value="/getallProducto" />
         
-        <h1 align="center">Consulta de Informacion Comercial</h1>
+        <h1 align="center">Registro de Visita</h1>
         </br>
-        
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
         </br>
+        <h4 align="center">Consulta de Informaci&oacute;n Comercial</h4>
+        </br>
+        </br>
         
-        <p align="center"><a href="${addUrl}" class="btn btn-success"> Agregar </a></p>
+        <p align="center">
+            <a href="${addUrl}" class="btn btn-success"> Agregar </a> 
+            <a href="${getInfOrg}" class="btn btn-danger"> Regresar </a>
+        </p>
         
         <i class="bi bi-trash-fill"></i>
         
@@ -39,11 +46,12 @@
                         
                         <thead>
                             <tr>
-                                <th class="text-center" style="color:red"><strong> Id Organizacional </strong></th>
+                                <th class="text-center" style="color:red"><strong> Negocio </strong></th>
                                 <th class="text-center" style="color:red"><strong> Departamentos de Comercio Interior </strong></th>
                                 <th class="text-center" style="color:red"><strong> Paises de Comercio Exterior </strong></th>
                                 <th class="text-center" style="color:red"><strong> Empresas Socias </strong></th>
                                 <th class="text-center" style="color:red"><strong> Acciones </strong></th>
+                                <th class="text-center" style="color:red"><strong> Opciones </strong></th>
                             </tr>
                         </thead>
                         
@@ -53,7 +61,7 @@
                                 <c:url var="getUrl" value="" />
                                 
                                 <tr>
-                                    <td><c:out value="${informacionComercial.idInformacionOrganizacional}" /></td>
+                                    <td><c:out value="${informacionComercial.nombreNegocio}" /></td>
                                     <td><c:out value="${informacionComercial.departamentosDeComercioInterior}" /></td>
                                     <td><c:out value="${informacionComercial.paisesDeComercioExterior}" /></td>
                                     <td><c:out value="${informacionComercial.empresasSocias}" /></td>
@@ -69,6 +77,14 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
                                                 <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                                                 <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                                            </svg>
+                                        </a>
+                                    </td>
+                                    
+                                    <td>
+                                        <a href="${getProd}" class="btn btn-success btn-sm" title="Consultar Productos">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
                                             </svg>
                                         </a>
                                     </td>

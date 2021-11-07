@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Producto {
     int id;
     int idInformacionComercial;
+    String nombreNegocio;
     String nombre;
     float precioVenta;
     float precioFabricacion;
@@ -50,6 +51,14 @@ public class Producto {
 
     public void setPrecioFabricacion(float precioFabricacion) {
         this.precioFabricacion = precioFabricacion;
+    }
+
+    public String getNombreNegocio() {
+        return nombreNegocio;
+    }
+
+    public void setNombreNegocio(String nombreNegocio) {
+        this.nombreNegocio = nombreNegocio;
     }
 
     @Override

@@ -28,27 +28,27 @@
             <c:if test="${!empty usuarioGetId}">
                 
                 <div class="mb-3">
-                    <label path="nombre" class="form-label"><strong>Nombre: </strong></label>
+                    <label path="nombre" class="form-label"><strong>Nombres: </strong></label>
                     <input path="nombre" type="text" disabled class="form-control" style="width: 30%; text-align: center;" value="${usuarioGetId.nombre}"/>
                 </div>
                 
                 <div class="mb-3">
-                    <label path="apellido" class="form-label"><strong>Apellido: </strong></label>
+                    <label path="apellido" class="form-label"><strong>Apellidos: </strong></label>
                     <input path="apellido" type="text" disabled class="form-control" style="width: 30%; text-align: center;" value="${usuarioGetId.apellido}"/>
                 </div>
                 
                 <div class="mb-3">
-                    <label path="idRol" class="form-label"><strong>IDRol: </strong></label>
-                    <input path="idRol" type="text" disabled class="form-control" style="width: 30%; text-align: center;" value="${usuarioGetId.idRol}"/>
+                    <label path="nombreRol" class="form-label"><strong>Rol: </strong></label>
+                    <input path="nombreRol" type="text" disabled class="form-control" style="width: 30%; text-align: center;" value="${usuarioGetId.nombreRol}"/>
                 </div>
                 
                 <div class="mb-3">
-                    <label path="correo" class="form-label"><strong>Correo </strong></label>
+                    <label path="correo" class="form-label"><strong>Correo: </strong></label>
                     <input path="correo" type="email" disabled class="form-control" style="width: 30%; text-align: center;" value="${usuarioGetId.correo}"/>
                 </div>
                     
                 <div class="mb-3">
-                    <label path="password" class="form-label"><strong>Contraseña </strong></label>
+                    <label path="password" class="form-label"><strong>Contraseña: </strong></label>
                     <input path="password" type="text" disabled class="form-control" style="width: 30%; text-align: center;" value="${usuarioGetId.password}"/>
                 </div>
                 

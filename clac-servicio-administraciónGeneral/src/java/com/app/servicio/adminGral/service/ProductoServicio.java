@@ -28,9 +28,9 @@ public class ProductoServicio {
     public List<Producto> getAll(){
         System.out.println("Recuperando todos los productos de la BD.");
         
-        String sql = "SELECT * FROM registro.productos";
+        String sql = "SELECT * FROM registro.productos AS P INNER JOIN registro.informacioncomercial AS INFCOM ON P.idInformacionComercial =  INFCOM.idInformacionComercial INNER JOIN registro.informacionorganizacional AS INFORG ON INFCOM.idInformacionOrganizacional =  INFORG.idInformacionOrganizacional";
         
-        productos = this.jdbcTemplate.query(sql, new ProductoRowMapper());
+        productos = this.jdbcTemplate.query(sql, new ProductoRowMapper2());
         
         System.out.println(productos);
         
@@ -63,9 +63,9 @@ public class ProductoServicio {
     public Producto getByID(int id){
         System.out.println("Recuperando producto con ID: " + id);
         
-        String sql = "SELECT * FROM registro.productos WHERE idProducto = ?";
+        String sql = "SELECT * FROM registro.productos AS P INNER JOIN registro.informacioncomercial AS INFCOM ON P.idInformacionComercial =  INFCOM.idInformacionComercial INNER JOIN registro.informacionorganizacional AS INFORG ON INFCOM.idInformacionOrganizacional =  INFORG.idInformacionOrganizacional WHERE P.idProducto = ?";
         
-        return this.jdbcTemplate.queryForObject(sql, new ProductoRowMapper(), id);
+        return this.jdbcTemplate.queryForObject(sql, new ProductoRowMapper2(), id);
     }
     
     

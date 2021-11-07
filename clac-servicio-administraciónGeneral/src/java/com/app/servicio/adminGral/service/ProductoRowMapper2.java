@@ -1,0 +1,26 @@
+
+package com.app.servicio.adminGral.service;
+
+import com.app.servicio.adminGral.domain.Producto;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.springframework.jdbc.core.RowMapper;
+
+public class ProductoRowMapper2 implements RowMapper<Producto>{
+
+    @Override
+    public Producto mapRow(ResultSet rs, int i) throws SQLException {
+        Producto produ = new Producto();
+        
+        produ.setId(rs.getInt("idProducto"));
+        produ.setIdInformacionComercial(rs.getInt("idInformacionComercial"));
+        produ.setNombreNegocio(rs.getString("nombreNegocio"));
+        produ.setNombre(rs.getString("nombreProducto"));
+        produ.setPrecioVenta(rs.getFloat("precioVenta"));
+        produ.setPrecioFabricacion(rs.getFloat("precioFabricacion"));
+        
+        return produ;
+    }
+    
+}
+

@@ -3,6 +3,8 @@ package com.app.cliente.controller;
 
 import com.app.cliente.domain.InformacionFinanciera;
 import com.app.cliente.domain.InformacionFinancieraList;
+import com.app.cliente.domain.InformacionOrganizacional;
+import com.app.cliente.domain.InformacionOrganizacionalList;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.HttpEntity;
@@ -20,7 +22,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class FinancieraCotroller {
+public class InformacionFinancieraController {
     
     private RestTemplate restTemplate = new RestTemplate();
     ModelAndView mav = new ModelAndView();
@@ -61,10 +63,28 @@ public class FinancieraCotroller {
     @RequestMapping(value = "/informacionFadd", method = RequestMethod.GET)
     public String getAddPageInformacionFinanciera(Model model) {
         System.out.println("--> Recibiendo el Request para mostrarlo en la página de agregar.");
+        
+        //Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
 
-        // Creamos una persona y la agregamos al modelo
-        model.addAttribute("informaAttribute", new InformacionFinanciera());
-
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<InformacionOrganizacional> entity = new HttpEntity<InformacionOrganizacional>(headers);
+        
+        //Enviamos el request via GET
+        try{
+            ResponseEntity<InformacionOrganizacionalList> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/informacionOrganizacional", 
+                    HttpMethod.GET, entity, InformacionOrganizacionalList.class);
+            // Agregamos al Model
+            model.addAttribute("informacionOrganizacionalList", result.getBody().getData());
+            model.addAttribute("informaAttribute", new InformacionFinanciera());
+        
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
         // Esto es para enviar al JSP de WEB-INF/jsp/agregarPersona.jsp
         return "agregarInformacionFinanciera";
     }
@@ -110,6 +130,7 @@ public class FinancieraCotroller {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(acceptableMediaTypes);
         HttpEntity<InformacionFinanciera> entity = new HttpEntity<InformacionFinanciera>(headers);
+        HttpEntity<InformacionOrganizacional> entity2 = new HttpEntity<InformacionOrganizacional>(headers);
 
         // Enviamos el Request via GET
         try {
@@ -117,6 +138,11 @@ public class FinancieraCotroller {
                     HttpMethod.GET, entity, InformacionFinanciera.class, id);
             // Agregamos al Model
             model.addAttribute("inforAttribute", result.getBody());
+            
+            ResponseEntity<InformacionOrganizacionalList> result2 = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/informacionOrganizacional", 
+                    HttpMethod.GET, entity, InformacionOrganizacionalList.class);
+            // Agregamos al Model
+            model.addAttribute("informacionOrganizacionalList", result2.getBody().getData());
 
         } catch (Exception e) {
                 System.out.println(e);
@@ -149,6 +175,5 @@ public class FinancieraCotroller {
         // Esto es para enviar al JSP de WEB-INF/jsp/consultarPersonas.jsp
         return "redirect:/getAllInformacionFinanciera";
     }
-       
     
 }

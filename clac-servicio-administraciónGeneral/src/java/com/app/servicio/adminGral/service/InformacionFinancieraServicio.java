@@ -21,8 +21,8 @@ public class InformacionFinancieraServicio {
     public List<InformacionFinanciera> getAll(){
         System.out.println("Recuperando toda la Informacion Financiera de la BD.");
         
-        String sql = "SELECT * FROM registro.informacionfinanciera";
-        infoFinanciera = this.jdbcTemplate.query(sql, new InfoFinancieraRowMapper());
+        String sql = "SELECT * FROM registro.informacionfinanciera AS INFFIN INNER JOIN registro.informacionorganizacional AS INFORG ON INFFIN.idInformacionOrganizacional =  INFORG.idInformacionOrganizacional";
+        infoFinanciera = this.jdbcTemplate.query(sql, new InformacionFinancieraRowMapper2());
         System.out.println(infoFinanciera);
         
         return infoFinanciera;
@@ -33,7 +33,7 @@ public class InformacionFinancieraServicio {
         
         String sql = "SELECT * FROM registro.informacionfinanciera WHERE idInformacionFinanciera = ?";
         
-        return this.jdbcTemplate.queryForObject(sql, new InfoFinancieraRowMapper(), id);
+        return this.jdbcTemplate.queryForObject(sql, new InformacionFinancieraRowMapper(), id);
     }
     
     //AGREGAR CREAR

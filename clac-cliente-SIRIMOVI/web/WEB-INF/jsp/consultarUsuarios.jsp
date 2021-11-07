@@ -41,7 +41,7 @@
                             <tr>
                                 <th class="text-center" style="color:red"><strong> Nombres </strong></th>
                                 <th class="text-center" style="color:red"><strong> Apellidos </strong></th>
-                                <th class="text-center" style="color:red"><strong> IdRol </strong></th>
+                                <th class="text-center" style="color:red"><strong> Rol </strong></th>
                                 <th class="text-center" style="color:red"><strong> Correo </strong></th>
                                 <th class="text-center" style="color:red"><strong> Contraseña </strong></th>
                             </tr>
@@ -56,7 +56,7 @@
                                 <tr>
                                     <td><c:out value="${usuario.nombre}" /></td>
                                     <td><c:out value="${usuario.apellido}" /></td>
-                                    <td><c:out value="${usuario.idRol}" /></td>
+                                    <td><c:out value="${usuario.nombreRol}" /></td>
                                     <td><c:out value="${usuario.correo}" /></td>
                                     <td><c:out value="${usuario.password}" /></td>
                                     <td>

@@ -3,6 +3,8 @@ package com.app.cliente.controller;
 
 import com.app.cliente.domain.InformacionOrganizacional;
 import com.app.cliente.domain.InformacionOrganizacionalList;
+import com.app.cliente.domain.Rubro;
+import com.app.cliente.domain.RubroList;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.HttpEntity;
@@ -30,7 +32,7 @@ public class InformacionOrganizacionalController {
     // Mostrar TODAS las personas en el JSP
     @RequestMapping(value = "/getallInformacionOrganizacional", method = RequestMethod.GET)
     public String getAllInformacionOrganizacional(Model model){
-        System.out.println("--> Recuperar todos los registros de la Informacion Organizacional de mi BD.");
+        System.out.println("--> (ADMIN) Recuperar todos los registros de la Informacion Organizacional de mi BD.");
         
         //Preparar Tipos de datos a trabajar
         List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
@@ -56,15 +58,63 @@ public class InformacionOrganizacionalController {
         return "consultarInformacionOrganizacional";
     }
     
+//    // LISTAR 2
+//    // Mostrar TODAS las personas en el JSP
+//    @RequestMapping(value = "/getallInformacionOrganizacionalG", method = RequestMethod.GET)
+//    public String getAllInformacionOrganizacionalG(@RequestParam("id") int id, Model model){
+//        System.out.println("--> Recuperar todos los registros de la Informacion Organizacional de mi BD.");
+//        
+//        //Preparar Tipos de datos a trabajar
+//        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+//        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
+//        
+//        //Preparo el header
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setAccept(acceptableMediaTypes);
+//        HttpEntity<InformacionOrganizacional> entity = new HttpEntity<InformacionOrganizacional>(headers);
+//        
+//        //Enviamos el request via GET
+//        try{
+//            ResponseEntity<InformacionOrganizacionalList> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/informacionOrganizacionalG/{id}", 
+//                    HttpMethod.GET, entity, InformacionOrganizacionalList.class);
+//            // Agregamos al Model
+//            model.addAttribute("informacionOrganizacionalGetAll", result.getBody().getData());
+//        
+//        }catch(Exception e){
+//            System.out.println(e);
+//        }
+//        
+//        // Esto es para enviar al JSP de WEB-INF/jsp/consultarPersonas.jsp
+//        return "consultarInformacionOrganizacional";
+//    }
+    
     
     // CREAR
     // Mostrar el JSP para Agregar Persona
     @RequestMapping(value = "/addInformacionOrganizacional", method = RequestMethod.GET)
     public String getAddPageInformacionOrganizacional(Model model) {
-    System.out.println("--> Recibiendo el Request para mostrarlo en la página de agregar.");
+        System.out.println("--> Recibiendo el Request para mostrarlo en la página de agregar.");
+        
+        //Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
 
-        // Creamos una persona y la agregamos al modelo
-        model.addAttribute("informacionOrganizacionalAttribute", new InformacionOrganizacional());
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<Rubro> entity = new HttpEntity<Rubro>(headers);
+        
+        //Enviamos el request via GET
+        try{
+            ResponseEntity<RubroList> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/rubros", 
+                    HttpMethod.GET, entity, RubroList.class);
+            // Agregamos al Model
+            model.addAttribute("rubrosList", result.getBody().getData());
+            model.addAttribute("informacionOrganizacionalAttribute", new InformacionOrganizacional());
+        
+        }catch(Exception e){
+            System.out.println(e);
+        }
 
         // Esto es para enviar al JSP de WEB-INF/jsp/agregarPersona.jsp
         return "agregarInformacionOrganizacional";
@@ -113,13 +163,21 @@ public class InformacionOrganizacionalController {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(acceptableMediaTypes);
         HttpEntity<InformacionOrganizacional> entity = new HttpEntity<InformacionOrganizacional>(headers);
+        HttpEntity<Rubro> entity2 = new HttpEntity<Rubro>(headers);
 
         // Enviamos el Request via GET
         try {
+            // PARA MOSTRAR LO DE LA TABLA INFORMACION ORGANIZACIONAL
             ResponseEntity<InformacionOrganizacional> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/informacionOrganizacional/{id}", 
                     HttpMethod.GET, entity, InformacionOrganizacional.class, id);
             // Agregamos al Model
             model.addAttribute("informacionOrganizacionalAttribute", result.getBody());
+            
+            // PARA MOSTRAR LO DE LA TABLA RUBRO (El Select)
+            ResponseEntity<RubroList> result2 = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/rubros", 
+                    HttpMethod.GET, entity, RubroList.class);
+            // Agregamos al Model
+            model.addAttribute("rubrosList", result2.getBody().getData());
 
         } catch (Exception e) {
                 System.out.println(e);

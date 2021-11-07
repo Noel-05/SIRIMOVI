@@ -26,23 +26,30 @@
             <form:form modelAttribute="informacionComercialAttribute" method="POST" action="${saveUrl}">
                 
                 <div class="mb-3">
-                    <form:label path="idInformacionOrganizacional" class="form-label">Id Organizacional: </form:label>
-                    <form:input path="idInformacionOrganizacional" required="true" type="number" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="idInformacionOrganizacional" class="form-label">Negocio </form:label>
+                    <form:select path="idInformacionOrganizacional" class="form-control" style="width: 30%;" required="true">
+                        <c:forEach var="infOrg" items="${InformacionOrganizacionalList}">
+                            <form:option value="${infOrg.idInfOrganizacional}">${infOrg.nombreNegocio}</form:option>
+                        </c:forEach>
+                    </form:select>
                 </div>
                     
                 <div class="mb-3">
                     <form:label path="departamentosDeComercioInterior" class="form-label">Departamentos de Comercio Interior: </form:label>
                     <form:input path="departamentosDeComercioInterior" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <div id="emailHelp" class="form-text">Porfavor Escribir cada Departamento separado por comas (,).</div>
                 </div>
                 
                 <div class="mb-3">
                     <form:label path="paisesDeComercioExterior" class="form-label">Paises de Comercio Exterior: </form:label>
-                    <form:input path="paisesDeComercioExterior" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:input path="paisesDeComercioExterior" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <div id="emailHelp" class="form-text">Porfavor Escribir cada Pais separado por comas (,).</div>
                 </div>
                 
                 <div class="mb-3">
                     <form:label path="empresasSocias" class="form-label">Empresas Socias: </form:label>
-                    <form:input path="empresasSocias" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:input path="empresasSocias" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <div id="emailHelp" class="form-text">Porfavor Escribir cada Empresa separada por comas (,).</div>
                 </div>
                     
                 <button type="submit" class="btn btn-primary">Guardar</button>

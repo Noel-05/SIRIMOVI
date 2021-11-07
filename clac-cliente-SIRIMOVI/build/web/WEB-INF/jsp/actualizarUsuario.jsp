@@ -25,19 +25,26 @@
         <div class="container mt-4" align="center">
             <form:form modelAttribute="usuarioAttribute" method="POST" action="${saveUrl}">
                 <div class="mb-3">
-                    <form:label path="nombre" class="form-label">Nombre: </form:label>
+                    <form:label path="nombre" class="form-label">Nombres: </form:label>
                     <form:input path="nombre" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                     <div id="emailHelp" class="form-text">NO utilizar tildes ni el caracter Ñ.</div>
                 </div>
+                    
                 <div class="mb-3">
-                    <form:label path="apellido" class="form-label">Apellido: </form:label>
+                    <form:label path="apellido" class="form-label">Apellidos: </form:label>
                     <form:input path="apellido" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                     <div id="emailHelp" class="form-text">NO utilizar tildes ni el caracter Ñ.</div>
                 </div>
+                    
                 <div class="mb-3">
-                    <form:label path="idRol" class="form-label">IdRol: </form:label>
-                    <form:input path="idRol" type="text" required="true" class="form-control" style="width: 30%;"/>
+                    <form:label path="idRol" class="form-label">Rol: </form:label>
+                    <form:select path="idRol" class="form-control" style="width: 30%;" required="true">
+                        <c:forEach var="nomRol" items="${rolList}">
+                            <form:option value="${nomRol.idRol}">${nomRol.nombreRol}</form:option>
+                        </c:forEach>
+                    </form:select>
                 </div>
+                    
                 <div class="mb-3">
                     <form:label path="correo" class="form-label">Correo: </form:label>
                     <form:input path="correo" required="true" type="email" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>

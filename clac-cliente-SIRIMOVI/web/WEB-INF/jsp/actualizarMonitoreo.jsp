@@ -26,28 +26,32 @@
             <form:form modelAttribute="monitoreoAttribute" method="POST" action="${saveUrl}">
                 
                 <div class="mb-3">
-                    <form:label path="idInfo" class="form-label">id informacion organzacional: </form:label>
-                    <form:input path="idInfo" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="idInfo" class="form-label">Negocio </form:label>
+                    <form:select path="idInfo" class="form-control" style="width: 30%;" required="true">
+                        <c:forEach var="nomNeg" items="${informacionOrganizacionalList}">
+                            <form:option value="${nomNeg.idInfOrganizacional}">${nomNeg.nombreNegocio}</form:option>
+                        </c:forEach>
+                    </form:select>
                 </div>
                     
                 <div class="mb-3">
-                    <form:label path="cantidadProduccion" class="form-label"> Cantidad de produccion: </form:label>
-                    <form:input path="cantidadProduccion" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="cantidadProduccion" class="form-label"> Cantidad de producci&oacute;n: </form:label>
+                    <form:input path="cantidadProduccion" type="number" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
                     
                 <div class="mb-3">
                     <form:label path="cantidadPerdidas" class="form-label">Cantidad de perdida: </form:label>
-                    <form:input path="cantidadPerdidas" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:input path="cantidadPerdidas" required="number" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
                 
                 <div class="mb-3">
                     <form:label path="totalVentas" class="form-label">Total de ventas: </form:label>
-                    <form:input path="totalVentas" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:input path="totalVentas" type="number" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
                 
                 <div class="mb-3">
                     <form:label path="ganancia" class="form-label">Ganancias: </form:label>
-                    <form:input path="ganancia" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:input path="ganancia" type="number" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
                     
                 <button type="submit" class="btn btn-primary">Guardar</button>

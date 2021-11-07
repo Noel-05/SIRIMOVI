@@ -24,9 +24,9 @@ public class InformacionComercialServicio {
     public List<InformacionComercial> getAll(){
         System.out.println("Recuperando todas la Informacion Comercial de la BD.");
         
-        String sql = "SELECT * FROM registro.informacioncomercial";
+        String sql = "SELECT * FROM registro.informacioncomercial AS INFCOM INNER JOIN registro.informacionorganizacional AS INFORG ON INFCOM.idInformacionOrganizacional =  INFORG.idInformacionOrganizacional";
         
-        informacionComercial = this.jdbcTemplate.query(sql, new  InformacionComercialRowMapper());
+        informacionComercial = this.jdbcTemplate.query(sql, new  InformacionComercialRowMapper2());
         
         System.out.println(informacionComercial);
         

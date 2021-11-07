@@ -1,6 +1,8 @@
 
 package com.app.cliente.controller;
 
+import com.app.cliente.domain.Rol;
+import com.app.cliente.domain.RolList;
 import com.app.cliente.domain.Usuario;
 import com.app.cliente.domain.UsuarioList;
 import java.util.ArrayList;
@@ -92,9 +94,28 @@ public class UsuarioController {
     @RequestMapping(value = "/addUsuarios", method = RequestMethod.GET)
     public String getAddPageUsuarios(Model model) {
         System.out.println("--> Recibiendo el Request para mostrarlo en la página de agregar.");
+        
+        //Preparar Tipos de datos a trabajar
+        List<MediaType> acceptableMediaTypes = new ArrayList<MediaType>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_XML);
 
-        // Creamos una persona y la agregamos al modelo
-        model.addAttribute("usuarioAttribute", new Usuario());
+        //Preparo el header
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(acceptableMediaTypes);
+        HttpEntity<Rol> entity = new HttpEntity<Rol>(headers);
+        
+        //Enviamos el request via GET
+        try{
+            ResponseEntity<RolList> result = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/roles", 
+                    HttpMethod.GET, entity, RolList.class);
+            
+            // Agregamos al Model
+            model.addAttribute("rolList", result.getBody().getData());
+            model.addAttribute("usuarioAttribute", new Usuario());
+        
+        }catch(Exception e){
+            System.out.println(e);
+        }
 
         // Esto es para enviar al JSP de WEB-INF/jsp/agregarUsuario.jsp
         return "agregarUsuario";
@@ -143,6 +164,7 @@ public class UsuarioController {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(acceptableMediaTypes);
         HttpEntity<Usuario> entity = new HttpEntity<Usuario>(headers);
+        HttpEntity<Rol> entity2 = new HttpEntity<Rol>(headers);
 
         // Enviamos el Request via GET
         try {
@@ -150,6 +172,12 @@ public class UsuarioController {
                     HttpMethod.GET, entity, Usuario.class, idUsuario);
             // Agregamos al Model
             model.addAttribute("usuarioAttribute", result.getBody());
+            
+            // PARA MOSTRAR LO DE LA TABLA RUBRO (El Select)
+            ResponseEntity<RolList> result2 = restTemplate.exchange("http://localhost:8080/clac-servicio-administracionGeneral/roles", 
+                    HttpMethod.GET, entity, RolList.class);
+            // Agregamos al Model
+            model.addAttribute("rolList", result2.getBody().getData());
 
         } catch (Exception e) {
                 System.out.println(e);

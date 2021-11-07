@@ -13,7 +13,7 @@
     <body>
         </br>
         
-        <h1 align="center">Crear Nueva Información Organizacional</h1>
+        <h1 align="center">Crear Nueva Informaci&oacute;n Organizacional</h1>
         </br>
         
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
@@ -26,20 +26,24 @@
             <form:form modelAttribute="informacionOrganizacionalAttribute" method="POST" action="${saveUrl}">
                     
                 <div class="mb-3">
-                    <form:label path="nombreNegocio" class="form-label">Nombre de negocio: </form:label>
+                    <form:label path="nombreNegocio" class="form-label">Nombre del negocio: </form:label>
                     <form:input path="nombreNegocio" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                     <div id="emailHelp" class="form-text">NO utilizar tildes ni el caracter Ñ.</div>
                 </div>
                 
                 <div class="mb-3">
-                    <form:label path="direccionNegocio" class="form-label">Direccion del negocio: </form:label>
+                    <form:label path="direccionNegocio" class="form-label">Direcci&oacute;n del negocio: </form:label>
                     <form:input path="direccionNegocio" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                     <div id="emailHelp" class="form-text">NO utilizar tildes ni el caracter Ñ.</div>
                 </div>
                     
                 <div class="mb-3">
-                    <form:label path="idRubro" class="form-label">Id Rubro: </form:label>
-                    <form:input path="idRubro" required="true" type="number" class="form-control" style="width: 30%;" />
+                    <form:label path="idRubro" class="form-label">Rubro: </form:label>
+                    <form:select path="idRubro" class="form-control" style="width: 30%;" required="true">
+                        <c:forEach var="nomRu" items="${rubrosList}">
+                            <form:option value="${nomRu.idRubro}">${nomRu.nombreRubro}</form:option>
+                        </c:forEach>
+                    </form:select>
                 </div>
                 
                 <div class="mb-3">

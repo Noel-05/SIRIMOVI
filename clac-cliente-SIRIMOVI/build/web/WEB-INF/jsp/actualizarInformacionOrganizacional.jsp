@@ -40,8 +40,12 @@
                 </div>
                
                 <div class="mb-3">
-                    <form:label path="idRubro" class="form-label">Id Rubro: </form:label>
-                    <form:input path="idRubro" required="true" type="number" class="form-control" style="width: 30%;"/>
+                    <form:label path="idRubro" class="form-label">Rubro: </form:label>
+                    <form:select path="idRubro" class="form-control" style="width: 30%;" required="true">
+                        <c:forEach var="nomRu" items="${rubrosList}">
+                            <form:option value="${nomRu.idRubro}">${nomRu.nombreRubro}</form:option>
+                        </c:forEach>
+                    </form:select>
                 </div>
                  
                 <div class="mb-3">

@@ -17,14 +17,20 @@
         </br>
         
         <c:url var="addUrl" value="/addProducto" />
+        <c:url var="getInfCom" value="/getallInformacionComercial" />
         
-        <h1 align="center">Consulta de Productos</h1>
+        <h1 align="center">Registro de Visita</h1>
         </br>
-        
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
         </br>
+        <h4 align="center">Consulta de Productos</h4>
+        </br>
+        </br>
         
-        <p align="center"><a href="${addUrl}" class="btn btn-success"> Agregar </a></p>
+        <p align="center">
+            <a href="${addUrl}" class="btn btn-success"> Agregar </a>
+            <a href="${getInfCom}" class="btn btn-danger"> Regresar </a>
+        </p>
         
         <i class="bi bi-trash-fill"></i>
         
@@ -39,10 +45,11 @@
                         
                         <thead>
                             <tr>
-                                <th class="text-center" style="color:red"><strong> Id Informacion Comercial </strong></th>
+                                <th class="text-center" style="color:red"><strong> Negocio </strong></th>
                                 <th class="text-center" style="color:red"><strong> Nombre Producto</strong></th>
                                 <th class="text-center" style="color:red"><strong> Precio Venta </strong></th>
                                 <th class="text-center" style="color:red"><strong> Precio Fabricacion </strong></th>
+                                <th class="text-center" style="color:red"><strong> Acciones </strong></th>
                             </tr>
                         </thead>
                         
@@ -53,7 +60,7 @@
                                 <c:url var="getUrl" value="/getProducto?id=${producto.id}" />
                                 
                                 <tr>
-                                    <td><c:out value="${producto.idInformacionComercial}" /></td>
+                                    <td><c:out value="${producto.nombreNegocio}" /></td>
                                     <td><c:out value="${producto.nombre}" /></td>
                                     <td>$ <c:out value="${producto.precioVenta}" /></td>
                                     <td>$ <c:out value="${producto.precioFabricacion}" /></td>

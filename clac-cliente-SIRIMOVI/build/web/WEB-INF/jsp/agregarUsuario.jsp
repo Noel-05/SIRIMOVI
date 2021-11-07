@@ -38,8 +38,12 @@
                 </div>
                 
                 <div class="mb-3">
-                    <form:label path="idRol" class="form-label">idRol: </form:label>
-                    <form:input path="idRol" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="idRol" class="form-label">Rol: </form:label>
+                    <form:select path="idRol" class="form-control" style="width: 30%;" required="true">
+                        <c:forEach var="nomRol" items="${rolList}">
+                            <form:option value="${nomRol.idRol}">${nomRol.nombreRol}</form:option>
+                        </c:forEach>
+                    </form:select>
                 </div>
                     
                 <div class="mb-3">
@@ -50,7 +54,7 @@
                     
                 <div class="mb-3">
                     <form:label path="password" class="form-label">Contraseña: </form:label>
-                    <form:input path="password" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:input path="password" required="true" type="password" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                     <div id="emailHelp" class="form-text">NO utilizar tildes ni el caracter Ñ.</div>
                 </div>
                     

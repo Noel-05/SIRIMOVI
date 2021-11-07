@@ -24,15 +24,15 @@ public class InformacionOrganizacionalServicio {
     public List<InformacionOrganizacional> getAll(){
         System.out.println("Recuperando todos los datos de información organizacional de la BD.");
         
-        String sql = "SELECT * FROM registro.informacionorganizacional";
+        String sql = "SELECT * FROM registro.informacionorganizacional AS INFORG INNER JOIN registro.rubro AS R ON INFORG.idRubro = R.idRubro";
         
-        informacionOrganizacionales = this.jdbcTemplate.query(sql, new InformacionOrganizacionalRowMapper());
+        informacionOrganizacionales = this.jdbcTemplate.query(sql, new InformacionOrganizacionalRowMapper2());
         
         System.out.println(informacionOrganizacionales);
         
         return informacionOrganizacionales;
     }
-    
+
     
     // CONSULTAR informacionOrganizacional por ID
     public InformacionOrganizacional getByID(int id){

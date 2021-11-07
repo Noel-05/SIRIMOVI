@@ -20,13 +20,13 @@ public class UsuarioServicio {
     List datos;
     
     
-    // LISTAR todas las personas
+    // LISTAR todos los usuarios
     public List<Usuario> getAll(){
-        System.out.println("Recuperando todas las personas de la BD.");
+        System.out.println("Recuperando todos los usuarios de la BD.");
         
-        String sql = "SELECT * FROM registro.usuarios";
+        String sql = "SELECT * FROM registro.usuarios AS USUA INNER JOIN registro.rol AS ROL ON USUA.idRol = ROL.idRol";
         
-        usuarios = this.jdbcTemplate.query(sql, new UsuarioRowMapper());
+        usuarios = this.jdbcTemplate.query(sql, new UsuarioRowMapper2());
         
         System.out.println(usuarios);
         
@@ -34,17 +34,17 @@ public class UsuarioServicio {
     }
     
     
-    // CONSULTAR persona por ID
+    // CONSULTAR usuarios por ID
     public Usuario getByID(int idUsuario){
         System.out.println("Recuperando usuario con ID: " + idUsuario);
         
-        String sql = "SELECT * FROM registro.usuarios WHERE idUsuario = ?";
+        String sql = "SELECT * FROM registro.usuarios AS USUA INNER JOIN registro.rol AS ROL ON USUA.idRol = ROL.idRol WHERE USUA.idUsuario = ?";
         
-        return this.jdbcTemplate.queryForObject(sql, new UsuarioRowMapper(), idUsuario);
+        return this.jdbcTemplate.queryForObject(sql, new UsuarioRowMapper2(), idUsuario);
     }
     
     
-    // CREAR persona
+    // CREAR usuarios
     public Usuario add(Usuario usuario){
         System.out.println("Insertando nuevo usuario.");
         
@@ -65,7 +65,7 @@ public class UsuarioServicio {
     }
     
     
-    // EDITAR persona
+    // EDITAR usuarios
     public Boolean edit(Usuario usuario){
         System.out.println("Editando Usuario con ID: " + usuario.getIdUsuario());
         
@@ -86,7 +86,7 @@ public class UsuarioServicio {
     }
     
     
-    // ELIMINAR persona
+    // ELIMINAR usuarios
     public Boolean delete(int idUsuario){
         System.out.println("Eliminando usuario con ID: " + idUsuario);
         

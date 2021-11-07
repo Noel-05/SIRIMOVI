@@ -24,20 +24,24 @@
         
         <div class="container mt-4" align="center">
             <form:form modelAttribute="bienesAttribute" method="POST" action="${saveUrl}">
+                
                 <div class="mb-3">
-                    <form:label path="idInformacionFinanciera" class="form-label">idInformacionFinanciera: </form:label>
-                    <form:input path="idInformacionFinanciera" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="idInformacionFinanciera" class="form-label">Negocio </form:label>
+                    <form:select path="idInformacionFinanciera" class="form-control" style="width: 30%;" required="true">
+                        <c:forEach var="nomNeg" items="${informacionFinancieraList}">
+                            <form:option value="${nomNeg.idinformacionFinanciera}">${nomNeg.nombreNegocio}</form:option>
+                        </c:forEach>
+                    </form:select>
                 </div>
                     
                 <div class="mb-3">
-                    <form:label path="nombreBien" class="form-label">nombreBien </form:label>
+                    <form:label path="nombreBien" class="form-label">Nombre Bien </form:label>
                     <form:input path="nombreBien" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
-                    <div id="emailHelp" class="form-text">Tu correo nunca será compartido.</div>
                 </div>
                     
                 <div class="mb-3">
-                    <form:label path="cantidadBien" class="form-label">cantidadBien </form:label>
-                    <form:input path="cantidadBien" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="cantidadBien" class="form-label">Cantidad Bien </form:label>
+                    <form:input path="cantidadBien" required="true" type="number" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
                     
                 <button type="submit" class="btn btn-primary">Guardar</button>

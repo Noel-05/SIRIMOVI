@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class InformacionFinanciera {
     int idinformacionFinanciera;
     int idinformacionOrganizacional;
+    String nombreNegocio;
     String rangoSalariosEmpleados;
     float saldoDeudasActual;
     float saldoLiquidez;
@@ -49,6 +50,14 @@ public class InformacionFinanciera {
 
     public void setSaldoLiquidez(float saldoLiquidez) {
         this.saldoLiquidez = saldoLiquidez;
+    }
+    
+    public String getNombreNegocio() {
+        return nombreNegocio;
+    }
+
+    public void setNombreNegocio(String nombreNegocio) {
+        this.nombreNegocio = nombreNegocio;
     }
     
     @Override

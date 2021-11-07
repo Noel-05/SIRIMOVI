@@ -5,7 +5,6 @@ import com.app.servicio.adminGral.domain.InformacionComercial;
 import com.app.servicio.adminGral.domain.InformacionComercialList;
 import com.app.servicio.adminGral.service.InformacionComercialServicio;
 
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;

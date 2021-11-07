@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Monitoreo {
     int idMonitoreo;
     int idInfo;
+    String nombreNegocio;
     int cantidadProduccion;
     int cantidadPerdidas;
     int totalVentas;
@@ -59,6 +60,15 @@ public class Monitoreo {
     public void setGanancia(int ganancia) {
         this.ganancia = ganancia;
     }
+    
+    public String getNombreNegocio() {
+        return nombreNegocio;
+    }
+
+    public void setNombreNegocio(String nombreNegocio) {
+        this.nombreNegocio = nombreNegocio;
+    }
+    
     @Override
     public String toString() {
         return "Monitoreo:" + "\nid Monitoreo: " + idMonitoreo + "\nId Informacion: " + idInfo + "\nCantidad de Produccion: " + cantidadProduccion + "\nCantidad de perdidas:" + cantidadPerdidas + "\nTotal de ventas: "+totalVentas+"\nGanancias: "+ganancia+'}';

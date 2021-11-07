@@ -25,8 +25,12 @@
         <div class="container mt-4" align="center">
             <form:form modelAttribute="informacionComercialAttribute" method="POST" action="${saveUrl}">
                 <div class="mb-3">
-                    <form:label path="idInformacionOrganizacional" class="form-label">id Organzacional: </form:label>
-                    <form:input path="idInformacionOrganizacional" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="idInformacionOrganizacional" class="form-label">Negocio </form:label>
+                    <form:select path="idInformacionOrganizacional" class="form-control" style="width: 30%;" required="true">
+                        <c:forEach var="infOrg" items="${InformacionOrganizacionalList}">
+                            <form:option value="${infOrg.idInfOrganizacional}">${infOrg.nombreNegocio}</form:option>
+                        </c:forEach>
+                    </form:select>
                 </div>
                     
                 <div class="mb-3">
@@ -36,12 +40,12 @@
                     
                 <div class="mb-3">
                     <form:label path="paisesDeComercioExterior" class="form-label">Paises de Comercio Exterior: </form:label>
-                    <form:input path="paisesDeComercioExterior" required="true" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:input path="paisesDeComercioExterior" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
                 
                 <div class="mb-3">
                     <form:label path="empresasSocias" class="form-label">Empresas Socias: </form:label>
-                    <form:input path="empresasSocias" type="text" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:input path="empresasSocias" type="text" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
                 </div>
                     
                 <button type="submit" class="btn btn-primary">Guardar</button>

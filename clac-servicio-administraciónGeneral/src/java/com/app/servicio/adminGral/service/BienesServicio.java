@@ -24,9 +24,9 @@ public class BienesServicio {
     public List<Bienes> getAll(){
         System.out.println("Recuperando todos los bienes de la BD.");
         
-        String sql = "SELECT * FROM registro.bienes";
+        String sql = "SELECT * FROM registro.bienes AS B INNER JOIN registro.informacionfinanciera AS INFIN ON B.idInformacionFinanciera = INFIN.idInformacionFinanciera INNER JOIN registro.informacionorganizacional AS INFORG ON INFIN.idInformacionOrganizacional = INFORG.idInformacionOrganizacional";
         
-        bienes = this.jdbcTemplate.query(sql, new BienesRowMapper());
+        bienes = this.jdbcTemplate.query(sql, new BienesRowMapper2());
         
         System.out.println(bienes);
         

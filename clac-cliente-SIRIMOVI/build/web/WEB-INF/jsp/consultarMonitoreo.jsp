@@ -39,9 +39,9 @@
                         
                         <thead>
                             <tr>
-                                <th class="text-center" style="color:red"><strong> Id inf. organizacional </strong></th>
-                                <th class="text-center" style="color:red"><strong> Cantidad de Producci&oacute;n </strong></th>
-                                <th class="text-center" style="color:red"><strong> Cantidad de Perdidas </strong></th>
+                                <th class="text-center" style="color:red"><strong> Negocio </strong></th>
+                                <th class="text-center" style="color:red"><strong> Cant. de Producci&oacute;n </strong></th>
+                                <th class="text-center" style="color:red"><strong> Cant. de Perdidas </strong></th>
                                 <th class="text-center" style="color:red"><strong> Total de ventas </strong></th>
                                 <th class="text-center" style="color:red"><strong> Ganancias </strong></th>
                             </tr>
@@ -54,7 +54,7 @@
                                 <c:url var="getUrl" value="" />
                                 
                                 <tr>
-                                    <td><c:out value="${monitoreo.idInfo}" /></td>
+                                    <td><c:out value="${monitoreo.nombreNegocio}" /></td>
                                     <td><c:out value="${monitoreo.cantidadProduccion}" /></td>
                                     <td><c:out value="${monitoreo.cantidadPerdidas}" /></td>
                                     <td><c:out value="${monitoreo.totalVentas}" /></td>

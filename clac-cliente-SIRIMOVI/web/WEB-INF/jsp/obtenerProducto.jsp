@@ -32,8 +32,8 @@
                 </div>
                 
                 <div class="mb-3">
-                    <label path="idInformacionComercial" class="form-label"><strong>Id Informacion Comercial: </strong></label>
-                    <input path="idInformacionComercial" type="number" disabled class="form-control" style="width: 30%; text-align: center;" value="${productoGetId.idInformacionComercial}"/>
+                    <label path="nombreNegocio" class="form-label"><strong>Id Informacion Comercial: </strong></label>
+                    <input path="nombreNegocio" type="text" disabled class="form-control" style="width: 30%; text-align: center;" value="${productoGetId.nombreNegocio}"/>
                 </div>
                     
                 <div class="mb-3">

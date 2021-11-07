@@ -26,8 +26,12 @@
             <form:form modelAttribute="productoAttribute" method="POST" action="${saveUrl}">
                 
                 <div class="mb-3">
-                    <form:label path="idInformacionComercial" class="form-label">Id Informacion Comercial </form:label>
-                    <form:input path="idInformacionComercial" type="number" required="true" class="form-control" aria-describedby="emailHelp" style="width: 30%;"/>
+                    <form:label path="idInformacionComercial" class="form-label">Negocio </form:label>
+                    <form:select path="idInformacionComercial" class="form-control" style="width: 30%;" required="true">
+                        <c:forEach var="nomNeg" items="${informacionComercialList}">
+                            <form:option value="${nomNeg.idInformacionComercial}">${nomNeg.nombreNegocio}</form:option>
+                        </c:forEach>
+                    </form:select>
                 </div>
                     
                 <div class="mb-3">

@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Bienes {
     int idBien;
     int idInformacionFinanciera;
+    String nombreNegocio;
     String nombreBien;
     int cantidadBien;
 
@@ -40,6 +41,14 @@ public class Bienes {
 
     public void setCantidadBien(int cantidadBien) {
         this.cantidadBien = cantidadBien;
+    }
+
+    public String getNombreNegocio() {
+        return nombreNegocio;
+    }
+
+    public void setNombreNegocio(String nombreNegocio) {
+        this.nombreNegocio = nombreNegocio;
     }
 
     @Override

@@ -23,9 +23,9 @@ public class MonitoreoServicio {
     public List<Monitoreo> getAll(){
         System.out.println("Recuperando todas los monitoreos de la BD.");
         
-        String sql = "SELECT * FROM registro.monitoreos";
+        String sql = "SELECT * FROM registro.monitoreos AS M INNER JOIN registro.informacionorganizacional AS INFORG ON M.idInformacionOrganizacional =  INFORG.idInformacionOrganizacional";
         
-        monitoreos = this.jdbcTemplate.query(sql, new MonitoreoRowMapper());
+        monitoreos = this.jdbcTemplate.query(sql, new MonitoreoRowMapper2());
         
         System.out.println(monitoreos);
         

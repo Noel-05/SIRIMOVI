@@ -18,15 +18,22 @@
         </br>
         
         <c:url var="addUrl" value="/informacionFadd" />
+        <c:url var="getInfOrg" value="/getallInformacionOrganizacional" />
+        <c:url var="getBien" value="/getallBienes" />
         
-        <h1 align="center">Informacion Financiera</h1>
+        <h1 align="center">Registro de Visita</h1>
         </br>
-        
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
         </br>
+        <h4 align="center">Consulta de Informaci&oacute;n Financiera</h4>
+        </br>
+        </br>
         
-        <p align="center"><a href="${addUrl}" class="btn btn-success"> Agregar </a></p>
-        
+        <p align="center">
+            <a href="${addUrl}" class="btn btn-success"> Agregar </a>
+            <a href="${getInfOrg}" class="btn btn-danger"> Regresar </a>
+        </p>
+                
         <i class="bi bi-trash-fill"></i>
         
         <div class="container mt-4">
@@ -40,12 +47,12 @@
                         
                         <thead>
                             <tr>
-                                <th class="text-center" style="color:red"><strong> Id Inf Financiera </strong></th>
-                                <th class="text-center" style="color:red"><strong> Id Inf Organizacional </strong></th>
+                                <th class="text-center" style="color:red"><strong> Negocio </strong></th>
                                 <th class="text-center" style="color:red"><strong> Rango Salarios Empleados </strong></th>
                                 <th class="text-center" style="color:red"><strong> Saldo Deudas Actual </strong></th>
                                 <th class="text-center" style="color:red"><strong> Saldo Liquidez </strong></th>
                                 <th class="text-center" style="color:red"><strong> Acciones </strong></th>
+                                <th class="text-center" style="color:red"><strong> Opciones </strong></th>
                             </tr>
                         </thead>
                         
@@ -56,11 +63,10 @@
                                 <c:url var="getUrl" value="/get?id=${informacionfinanciera.idinformacionFinanciera}" />
                                 
                                 <tr>
-                                    <td><c:out value="${informacionfinanciera.idinformacionFinanciera}" /></td>
-                                    <td><c:out value="${informacionfinanciera.idinformacionOrganizacional}" /></td>
+                                    <td><c:out value="${informacionfinanciera.nombreNegocio}" /></td>
                                     <td><c:out value="${informacionfinanciera.rangoSalariosEmpleados}" /></td>
-                                    <td><c:out value="${informacionfinanciera.saldoDeudasActual}" /></td>
-                                    <td><c:out value="${informacionfinanciera.saldoLiquidez}" /></td>
+                                    <td><c:out value="$ ${informacionfinanciera.saldoDeudasActual}" /></td>
+                                    <td><c:out value="$ ${informacionfinanciera.saldoLiquidez}" /></td>
                                     <td>
                                         <a href="${editUrl}" class="btn btn-warning btn-sm" title="Editar Persona"> 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -78,6 +84,15 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
                                                 <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                                                 <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                                            </svg>
+                                        </a>
+                                    </td>
+                                    
+                                    <td>
+                                        <a href="${getBien}" class="btn btn-success btn-sm" title="Consultar Bienes">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+                                                <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
                                             </svg>
                                         </a>
                                     </td>

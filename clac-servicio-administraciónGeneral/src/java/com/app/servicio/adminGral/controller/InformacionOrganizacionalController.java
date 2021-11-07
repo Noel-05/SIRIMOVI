@@ -36,6 +36,21 @@ public class InformacionOrganizacionalController {
         return result;
     }
     
+//    // LISTAR
+//    // Metodo para recuperar todas las personas de la BD
+//    @RequestMapping(value="/informacionOrganizacionalG/{id}", method=RequestMethod.GET, headers="Accept=application/json, application/xml")
+//    private @ResponseBody InformacionOrganizacionalList getInformacionOrganizacionalG(@PathVariable("id") int id){
+//        
+//        InformacionOrganizacionalList result = new InformacionOrganizacionalList();
+//        
+//        result.setData(informacionOrganizacionalServicio.getAllG(id));
+//        
+//        System.out.println(result);
+//        
+//        return result;
+//    }
+    
+    
     // CONSULTAR
     // Metodo para recuperar una persona por su ID
     @RequestMapping(value="/informacionOrganizacional/{id}", method = RequestMethod.GET, headers="Accept=application/json, application/xml")
@@ -43,6 +58,7 @@ public class InformacionOrganizacionalController {
         
         return informacionOrganizacionalServicio.getByID(id);
     }
+    
     
     // CREAR
     // Metodo para agregar persona

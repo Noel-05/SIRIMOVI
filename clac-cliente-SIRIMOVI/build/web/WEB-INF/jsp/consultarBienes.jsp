@@ -17,14 +17,20 @@
         </br>
         
         <c:url var="addUrl" value="/bienesAdd" />
+        <c:url var="getInfFin" value="/getAllInformacionFinanciera" />
         
-        <h1 align="center">Consulta de Bienes</h1>
+        <h1 align="center">Registro de Visita</h1>
         </br>
-        
         <hr size="4px" style="width:50%; margin: auto; color: black;" />
         </br>
+        <h4 align="center">Consulta de Bienes</h4>
+        </br>
+        </br>
         
-        <p align="center"><a href="${addUrl}" class="btn btn-success"> Agregar </a></p>
+        <p align="center">
+            <a href="${addUrl}" class="btn btn-success"> Agregar </a>
+            <a href="${getInfFin}" class="btn btn-danger"> Regresar </a>
+        </p>
         
         <i class="bi bi-trash-fill"></i>
         
@@ -39,9 +45,10 @@
                         
                         <thead>
                             <tr>
-                                <th class="text-center" style="color:red"><strong> Id Informacion Financiera </strong></th>
+                                <th class="text-center" style="color:red"><strong> Negocio </strong></th>
                                 <th class="text-center" style="color:red"><strong> Nombre Bien</strong></th>
                                 <th class="text-center" style="color:red"><strong> Cantidad </strong></th>
+                                <th class="text-center" style="color:red"><strong> Acciones </strong></th>
                             </tr>
                         </thead>
                         
@@ -52,7 +59,7 @@
                                 <c:url var="getUrl" value="/getProducto?id=${bienes.idBien}" />
                                 
                                 <tr>
-                                    <td><c:out value="${bienes.idInformacionFinanciera}" /></td>
+                                    <td><c:out value="${bienes.nombreNegocio}" /></td>
                                     <td><c:out value="${bienes.nombreBien}" /></td>
                                     <td><c:out value="${bienes.cantidadBien}" /></td>
                                     <td>

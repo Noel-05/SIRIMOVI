@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 
-public class InfoFinancieraRowMapper implements RowMapper<InformacionFinanciera>{
+public class InformacionFinancieraRowMapper implements RowMapper<InformacionFinanciera>{
     
     @Override
     public InformacionFinanciera mapRow(ResultSet rs, int i) throws SQLException{

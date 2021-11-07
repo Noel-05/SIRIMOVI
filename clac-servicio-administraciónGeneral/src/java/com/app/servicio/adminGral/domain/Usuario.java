@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Usuario {
     int idUsuario;
     int idRol;
+    String nombreRol;
     String nombre;
     String apellido;
     String correo;
@@ -59,6 +60,14 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getNombreRol() {
+        return nombreRol;
+    }
+
+    public void setNombreRol(String nombreRol) {
+        this.nombreRol = nombreRol;
     }
     
     public String ToString(){
